@@ -24,7 +24,7 @@ Set file paths (all paths should be relative to this script):
 
 ```{r}
 # Raw file:
-raw_data_file = gs_title("TEST gapminder data")
+dwc_raw_file = "../data/raw/gapminder.csv"
 
 # Processed files:
 dwc_test_file = "../data/processed/gapminder.csv"
@@ -32,10 +32,22 @@ dwc_test_file = "../data/processed/gapminder.csv"
 
 # Read and pre-process raw data
 
+Register the spreadsheet:
+
+```{r}
+raw_data_file = gs_title("TEST gapminder data")
+```
+
 Read the data in the worksheet `gapminder`:
 
 ```{r}
 raw_data <- raw_data_file %>% gs_read("gapminder")
+```
+
+Save `raw_data` as a .csv file:
+
+```{r}
+write.csv(raw_data, file = dwc_raw_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
 Add prefix `raw_` to all column names to avoid name clashes with Darwin Core terms:
@@ -44,19 +56,25 @@ Add prefix `raw_` to all column names to avoid name clashes with Darwin Core ter
 colnames(raw_data) <- paste0("raw_", colnames(raw_data))
 ```
 
+Generate `processed`:
+
+```{r}
+processed <- raw_data
+```
+
 
 # Basic processing
 
 Add a new column to raw_data:
 
 ```{r}
-raw_data %<>% mutate(country_new = raw_country) 
+processed %<>% mutate(country_new = raw_country) 
 ```
 
 Use `case_when()`:
 
 ```{r}
-raw_data %<>% mutate(after_2000 = case_when(
+processed %<>% mutate(after_2000 = case_when(
   raw_year < 2000 ~ "NO",
   raw_year > 2000 ~ "YES")) 
 ```
@@ -66,11 +84,11 @@ raw_data %<>% mutate(after_2000 = case_when(
 Remove original columns
 
 ```{r}
-raw_data %<>% select(-starts_with("raw_"))
+processed %<>% select(-starts_with("raw_"))
 ```
 
 Export dataframe
 
 ```{r}
-write.csv(raw_data, file = dwc_test_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(processed, file = dwc_test_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
