@@ -22,27 +22,55 @@ library(magrittr)  # For %<>% pipes
 
 Set file paths (all paths should be relative to this script):
 
- 
 ```{r}
+# Raw file:
+raw_data_file = gs_title("TEST gapminder data")
+
 # Processed files:
 dwc_test_file = "../data/processed/gapminder.csv"
 ```
 
 # Read and pre-process raw data
 
+Read the data in the worksheet `gapminder`:
+
 ```{r}
-gs_ws_ls(raw_data)
+raw_data <- raw_data_file %>% gs_read("gapminder")
+```
+
+Add prefix `raw_` to all column names to avoid name clashes with Darwin Core terms:
+
+```{r}
+colnames(raw_data) <- paste0("raw_", colnames(raw_data))
 ```
 
 
+# Basic processing
+
+Add a new column to raw_data:
 
 ```{r}
-adhoc_list <- gs_read(raw_data, ws = "Sheet1")
-```
-```{r}
-adhoc_list %<>% mutate (test = "dit is een test")
+raw_data %<>% mutate(country_new = raw_country) 
 ```
 
+Use `case_when()`:
+
 ```{r}
-write.csv(adhoc_list, file = dwc_test_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+raw_data %<>% mutate(after_2000 = case_when(
+  raw_year < 2000 ~ "NO",
+  raw_year > 2000 ~ "YES")) 
+```
+
+# Post-processing:
+
+Remove original columns
+
+```{r}
+raw_data %<>% select(-starts_with("raw_"))
+```
+
+Export dataframe
+
+```{r}
+write.csv(raw_data, file = dwc_test_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
