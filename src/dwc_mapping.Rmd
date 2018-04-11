@@ -1,0 +1,72 @@
+---
+title: "Darwin Core mapping"
+subtitle: "For: Ad hoc checklist of alien species in Belgium"
+author:
+- Lien Reyserhove
+- Peter Desmet
+- Quentin Groom
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+This document describes how we map the checklist data to Darwin Core. The source file for this document can be found [here]().
+
+# Setup
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Set locale (so we use UTF-8 character encoding):
+
+```{r}
+# This works on Mac OS X, might not work on other OS
+Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
+```
+
+Load libraries:
+
+```{r}
+library(tidyverse)       # To transform data
+library(magrittr)        # For %<>% pipes
+library(googlesheets)    # To import and read Google spreadsheets 
+library(stringr)         # To perform string operations
+library(digest)          # To generate hashes
+```
+
+Set file paths (all paths should be relative to this script):
+ 
+```{r}
+# Raw files:
+raw_data_file = "../data/raw/ad_hoc_checklist_dump.csv"
+
+# Processed files:
+
+```
+
+# Read the raw data using googlesheets
+
+The original spreadsheet can be found [here](https://docs.google.com/spreadsheets/d/1LeXXbry2ArK2rngsmFjz_xErwE1KwQ8ujtvHNmTVA6E/edit#gid=0). We need to retrieve this spreadsheet and select the specific worksheet first:
+
+Retrieve the spreadsheet:
+
+```{r}
+retrieve_spreadsheet <- gs_title("ad hoc checklist")
+```
+
+select the data in the worksheet `checklist`:
+
+```{r}
+raw_data <- retrieve_spreadsheet %>% gs_read("checklist")
+```
+
+We want to add a copy of the ad hoc checklist to the Github repository:
+
+```{r}
+write.csv(raw_data, file = raw_data_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
