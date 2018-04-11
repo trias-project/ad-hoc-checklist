@@ -43,3 +43,6 @@ adhoc_list <- gs_read(raw_data, ws = "Sheet1")
 adhoc_list %<>% mutate (test = "dit is een test")
 ```
 
+```{r}
+write.csv(adhoc_list, file = dwc_test_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
