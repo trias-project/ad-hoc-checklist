@@ -43,7 +43,7 @@ Set file paths (all paths should be relative to this script):
  
 ```{r}
 # Raw files:
-raw_data_file = "../data/raw/ad_hoc_checklist_dump.xlsx"
+raw_data_file = "../data/raw/ad_hoc_checklist_dump.csv"
 
 # Processed files:
 
@@ -51,22 +51,22 @@ raw_data_file = "../data/raw/ad_hoc_checklist_dump.xlsx"
 
 # Read the raw data using googlesheets
 
-Before you can retrieve data from a google sheet, you need to [register](https://accounts.google.com/SignUp?hl=en) as a user and grant google
+The original spreadsheet can be found [here](https://docs.google.com/spreadsheets/d/1LeXXbry2ArK2rngsmFjz_xErwE1KwQ8ujtvHNmTVA6E/edit#gid=0). We need to retrieve this spreadsheet and select the specific worksheet first:
 
-Register the spreadsheet:
+Retrieve the spreadsheet:
 
 ```{r}
-raw_data_file = gs_title("TEST gapminder data")
+retrieve_spreadsheet <- gs_title("ad hoc checklist")
 ```
 
-Read the data in the worksheet `gapminder`:
+select the data in the worksheet `checklist`:
 
 ```{r}
-raw_data <- raw_data_file %>% gs_read("gapminder")
+raw_data <- retrieve_spreadsheet %>% gs_read("checklist")
 ```
 
-Save `raw_data` as a .csv file:
+We want to add a copy of the ad hoc checklist to the Github repository:
 
 ```{r}
-write.csv(raw_data, file = dwc_raw_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(raw_data, file = raw_data_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
