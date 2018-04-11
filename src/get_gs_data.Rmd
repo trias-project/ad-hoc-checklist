@@ -33,3 +33,13 @@ dwc_test_file = "../data/processed/gapminder.csv"
 ```{r}
 gs_ws_ls(raw_data)
 ```
+
+
+
+```{r}
+adhoc_list <- gs_read(raw_data, ws = "Sheet1")
+```
+```{r}
+adhoc_list %<>% mutate (test = "dit is een test")
+```
+
