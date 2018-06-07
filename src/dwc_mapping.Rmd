@@ -5,6 +5,7 @@ author:
 - Lien Reyserhove
 - Peter Desmet
 - Quentin Groom
+- Tim Adriaens
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -14,7 +15,7 @@ output:
     number_sections: true
 ---
 
-This document describes how we map the checklist data to Darwin Core. The source file for this document can be found [here]().
+This document describes how we map the checklist data to Darwin Core. The source file for this document can be found [here](https://docs.google.com/spreadsheets/d/1LeXXbry2ArK2rngsmFjz_xErwE1KwQ8ujtvHNmTVA6E/edit#gid=0).
 
 # Setup
 
@@ -37,6 +38,7 @@ library(magrittr)        # For %<>% pipes
 library(googlesheets)    # To import and read Google spreadsheets 
 library(stringr)         # To perform string operations
 library(digest)          # To generate hashes
+library(rgbif)           # 
 ```
 
 Set file paths (all paths should be relative to this script):
@@ -49,7 +51,7 @@ raw_data_file = "../data/raw/ad_hoc_checklist_dump.csv"
 
 ```
 
-# Read the raw data using googlesheets
+# # Read and pre-process raw data
 
 The original spreadsheet can be found [here](https://docs.google.com/spreadsheets/d/1LeXXbry2ArK2rngsmFjz_xErwE1KwQ8ujtvHNmTVA6E/edit#gid=0). We need to retrieve this spreadsheet and select the specific worksheet first:
 
@@ -65,8 +67,148 @@ select the data in the worksheet `checklist`:
 raw_data <- retrieve_spreadsheet %>% gs_read("checklist")
 ```
 
-We want to add a copy of the ad hoc checklist to the Github repository:
+We want to add a copy of the raw ad hoc checklist to the Github repository:
 
 ```{r}
 write.csv(raw_data, file = raw_data_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
+
+Inspect `raw_data`: 
+
+```{r}
+raw_data %>% head()
+```
+
+Clean the data somewhat: remove empty rows if present:
+
+```{r}
+raw_data %<>%
+  remove_empty("rows") %>%    # Remove empty rows
+  clean_names()               # Have sensible (lowercase) column names
+```
+
+## Generate taxonID
+
+To uniquely identify a taxon in the taxon core and reference taxa in the extensions, we need a `taxonID`. Since we need it in all generated files, we generate it here in the raw data frame. It is a combination of `dataset-shortname:taxon:` and a hash based on the scientific name. As long as the scientific name doesn't change, the ID will be stable:
+
+```{r}
+# Vectorize the digest function (The digest() function isn't vectorized. So if you pass in a vector, you get one value for the whole vector rather than a digest for each element of the vector):
+vdigest <- Vectorize(digest)
+
+# Generate taxonID:
+raw_data %<>% mutate(taxon_id = paste("ad-hoc-checklist", "taxon", vdigest(scientific_name, algo="md5"), sep = ":"))
+```
+
+## Further pre-processing:
+
+Add prefix `raw_` to all column names to avoid name clashes with Darwin Core terms:
+
+```{r}
+colnames(raw_data) <- paste0("raw_", colnames(raw_data))
+```
+ 
+Preview data:
+
+```{r}
+head(raw_data)
+```
+
+# Create taxon core
+
+```{r start_taxon}
+taxon <- raw_data
+```
+
+## Term mapping
+
+Map the data to [Darwin Core Taxon](http://rs.gbif.org/core/dwc_taxon_2015-04-24.xml).
+ 
+### language
+
+```{r}
+taxon %<>% mutate(language = "en")
+```
+
+### license
+
+```{r}
+taxon %<>% mutate(license = "http://creativecommons.org/publicdomain/zero/1.0/")
+```
+
+### taxonID
+
+```{r}
+taxon %<>% mutate(taxonID = raw_taxon_id)
+```
+
+### scientificName
+
+Deal with duplicates:
+
+Select all rows in the dataframe that contain duplicates:
+
+```{r}
+duplicates <- taxon %>%  slice(which(duplicated(taxon $ raw_scientific_name) == "TRUE")) %>% 
+  select(raw_scientific_name)
+```
+
+Give all information about these duplicated taxa:
+
+```{r}
+taxon %>% filter(raw_scientific_name %in% duplicates $ raw_scientific_name) %>% 
+  arrange(raw_scientific_name)
+```
+
+Select unique scientific names (remove duplicated records):
+
+```{r}
+taxon %<>% filter(duplicated(taxon$ raw_scientific_name)==FALSE)
+```
+
+parse names:
+
+```{r}
+parsed_names <- parsenames(taxon $ raw_scientific_name)
+```
+
+Clean scientific names:
+Criteria: 
+- type = "HYBRID" of "INFORMAL"
+
+```{r}
+taxon %<>% mutate(scientificname_clean = str_replace_all(raw_scientific_name, "( sp\\.)|( spec\\.)| sp A", ""))
+```
+
+Show cleaned values:
+
+```{r}
+taxon %>% 
+  select(raw_scientific_name, scientificname_clean) %>% 
+  filter(str_detect(raw_scientific_name, "( sp\\.)|( spec\\.)| sp A") == TRUE)
+```
+
+
+### acceptedNameUsage
+### parentNameUsage
+### parentNameUsage
+### nameAccordingTo
+### nameAccordingTo
+### namePublishedInYear
+### higherClassification
+### higherClassification
+### phylum
+### class
+### order
+### family
+### genus
+### subgenus
+### specificEpithet
+### infraspecificEpithet
+### taxonRank
+### verbatimTaxonRank
+### scientificNameAuthorship
+### vernacularName
+### nomenclaturalCode
+### taxonomicStatus
+### nomenclaturalStatus
+### taxonRemarks
