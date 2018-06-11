@@ -36,6 +36,7 @@ Load libraries:
 library(tidyverse)       # To transform data
 library(magrittr)        # For %<>% pipes
 library(googlesheets)    # To import and read Google spreadsheets 
+library(janitor)         # To clean input data
 library(stringr)         # To perform string operations
 library(digest)          # To generate hashes
 library(rgbif)           # 
@@ -48,6 +49,7 @@ Set file paths (all paths should be relative to this script):
 raw_data_file = "../data/raw/ad_hoc_checklist_dump.csv"
 
 # Processed files:
+dwc_taxon_file = "../data/processed/taxon.csv"
 
 ```
 
@@ -89,14 +91,27 @@ raw_data %<>%
 
 ## Generate taxonID
 
-To uniquely identify a taxon in the taxon core and reference taxa in the extensions, we need a `taxonID`. Since we need it in all generated files, we generate it here in the raw data frame. It is a combination of `dataset-shortname:taxon:` and a hash based on the scientific name. As long as the scientific name doesn't change, the ID will be stable:
+To uniquely identify a taxon in the taxon core and reference taxa in the extensions, we need a `taxonID`. Since we need it in all generated files, we generate it here in the raw data frame. It is a combination of `dataset-shortname:taxon:` and a hash based on the scientific name. As long as the scientific name doesn't change, the ID will be stable.  Some of the names require some minor cleaning first though:
+
+```{r}
+raw_data %<>% mutate(scientificname_clean = str_replace_all(scientific_name, "( sp\\.)|( spec\\.)| sp A", ""))
+```
+
+Show cleaned values:
+
+```{r}
+raw_data %>% 
+  select(scientific_name, scientificname_clean) %>% 
+  filter(str_detect(scientific_name, "( sp\\.)|( spec\\.)| sp A") == TRUE)
+```
+
 
 ```{r}
 # Vectorize the digest function (The digest() function isn't vectorized. So if you pass in a vector, you get one value for the whole vector rather than a digest for each element of the vector):
 vdigest <- Vectorize(digest)
 
 # Generate taxonID:
-raw_data %<>% mutate(taxon_id = paste("ad-hoc-checklist", "taxon", vdigest(scientific_name, algo="md5"), sep = ":"))
+raw_data %<>% mutate(taxon_id = paste("ad-hoc-checklist", "taxon", vdigest(scientificname_clean, algo="md5"), sep = ":"))
 ```
 
 ## Further pre-processing:
@@ -110,7 +125,7 @@ colnames(raw_data) <- paste0("raw_", colnames(raw_data))
 Preview data:
 
 ```{r}
-head(raw_data)
+raw_data %>% head()
 ```
 
 # Create taxon core
@@ -148,14 +163,20 @@ Deal with duplicates:
 Select all rows in the dataframe that contain duplicates:
 
 ```{r}
-duplicates <- taxon %>%  slice(which(duplicated(taxon $ raw_scientific_name) == "TRUE")) %>% 
+duplicates <- taxon %>%  
+  slice(which(duplicated(taxon $ raw_scientific_name) == "TRUE")) %>% 
   select(raw_scientific_name)
+```
+
+```{r, eval=FALSE}
+duplicates
 ```
 
 Give all information about these duplicated taxa:
 
 ```{r}
-taxon %>% filter(raw_scientific_name %in% duplicates $ raw_scientific_name) %>% 
+taxon %>% 
+  filter(raw_scientific_name %in% duplicates $ raw_scientific_name) %>% 
   arrange(raw_scientific_name)
 ```
 
@@ -165,50 +186,66 @@ Select unique scientific names (remove duplicated records):
 taxon %<>% filter(duplicated(taxon$ raw_scientific_name)==FALSE)
 ```
 
-parse names:
+### kingdom
 
 ```{r}
-parsed_names <- parsenames(taxon $ raw_scientific_name)
+taxon %<>% mutate(kingdom = raw_kingdom) 
 ```
 
-Clean scientific names:
-Criteria: 
-- type = "HYBRID" of "INFORMAL"
-
-```{r}
-taxon %<>% mutate(scientificname_clean = str_replace_all(raw_scientific_name, "( sp\\.)|( spec\\.)| sp A", ""))
-```
-
-Show cleaned values:
-
-```{r}
-taxon %>% 
-  select(raw_scientific_name, scientificname_clean) %>% 
-  filter(str_detect(raw_scientific_name, "( sp\\.)|( spec\\.)| sp A") == TRUE)
-```
-
-
-### acceptedNameUsage
-### parentNameUsage
-### parentNameUsage
-### nameAccordingTo
-### nameAccordingTo
-### namePublishedInYear
-### higherClassification
-### higherClassification
 ### phylum
-### class
+
+```{r}
+taxon %<>% mutate(phylum = raw_phylum) 
+```
+
 ### order
+
+```{r}
+taxon %<>% mutate(order = raw_order) 
+```
+
 ### family
+
+```{r}
+taxon %<>% mutate(family = raw_family)
+```
+
 ### genus
-### subgenus
-### specificEpithet
-### infraspecificEpithet
+
+```{r}
+taxon %<>% mutate(genus = raw_genus)
+```
+
 ### taxonRank
-### verbatimTaxonRank
-### scientificNameAuthorship
-### vernacularName
+
+```{r}
+taxon %<>% mutate(taxonRank = raw_taxon_rank)
+```
+
 ### nomenclaturalCode
-### taxonomicStatus
-### nomenclaturalStatus
-### taxonRemarks
+
+```{r}
+taxon %>% mutate(nomenclaturalCode = raw_nomenclatural_code)
+```
+
+## Post-processing
+
+Remove the original columns:
+
+```{r}
+taxon %<>% select(-starts_with("raw_"))
+```
+
+Preview data:
+
+```{r}
+taxon %>% head()
+```
+
+Save to CSV:
+
+```{r}
+write.csv(taxon, file = dwc_taxon_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
+
+
