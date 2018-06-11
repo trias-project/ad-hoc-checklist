@@ -248,4 +248,9 @@ Save to CSV:
 write.csv(taxon, file = dwc_taxon_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
+# Create distribution extension
+
+```{r start_distribution}
+distribution <- raw_data
+```
 
