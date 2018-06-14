@@ -50,6 +50,7 @@ raw_data_file = "../data/raw/ad_hoc_checklist_dump.csv"
 
 # Processed files:
 dwc_taxon_file = "../data/processed/taxon.csv"
+dwc_distribution_file = "../data/processed/distribution.csv"
 
 ```
 
@@ -384,4 +385,91 @@ distribution %<>% mutate(eventDate = paste(start_date, end_date, sep = "/"))
 
 ### source
 
+```{r}
+
+```
+
+## Post-processing
+
+Remove the original columns:
+
+```{r}
+distribution %<>% select(-starts_with("raw_"), -start_date, -end_date)
+```
+
+Sort on `taxonID`:
+
+```{r}
+distribution %<>% arrange(taxonID)
+```
+
+Preview data:
+
+```{r}
+distribution %>% head()
+```
+
+Save to CSV:
+
+```{r}
+write.csv(distribution, file = dwc_distribution_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
+
+# Create species profile extension
+
+In this extension will express broad habitat characteristics (e.g. `isTerrestrial`) of the species.
+
+```{r start_species_profile}
+species_profile <- raw_data
+```
+
+Habitat information can be found in `raw_realm`.
+
+Show unique values:
+
+```{r}
+species_profile %>%
+  distinct(raw_realm) %>%
+  arrange(raw_realm)
+```
+
+## Term mapping
+
+Map the data to [Species Profile](http://rs.gbif.org/extension/gbif/1.0/speciesprofile.xml).
+
+### taxonID
+
+```{r}
+species_profile %<>% mutate(taxonID = raw_taxon_id)
+```
+
+### isMarine
+
+```{r}
+species_profile %<>% mutate(isMarine = case_when(
+  raw_realm == "freshwater | marine" ~ "TRUE",
+  raw_realm == "estuarine" ~ "TRUE",
+  TRUE ~ "FALSE"
+)) 
+```
+
+### isFreshwater
+
+```{r}
+species_profile %<>% mutate(isFreshwater = case_when(
+  raw_realm == "freshwater" ~ "TRUE",
+  raw_realm == "freshwater | marine" ~ "TRUE",
+  raw_realm == "terrestrial | freshwater" ~ "TRUE",
+  raw_realm == "estuarine" ~ "TRUE",
+  TRUE ~ "FALSE"
+)) 
+```
+
+### isTerrestrial
+
+```{r}
+species_profile %<>% mutate(isTerrestrial = case_when(
+  raw_realm == "" ~ "TRUE",
+  raw_realm == "" ~ "TRUE",
+```
 
