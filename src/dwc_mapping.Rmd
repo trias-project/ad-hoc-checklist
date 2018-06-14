@@ -150,6 +150,32 @@ taxon %<>% mutate(language = "en")
 taxon %<>% mutate(license = "http://creativecommons.org/publicdomain/zero/1.0/")
 ```
 
+### rightsHolder
+
+```{r}
+taxon %<>% mutate(rightsHolder = "INBO") 
+```
+
+### accessRights
+
+```{r}
+taxon %<>% mutate(accessRights = "https://www.inbo.be/en/norms-data-use") 
+```
+
+### references
+
+### datasetID
+
+```{r}
+taxon %<>% mutate(datasetID = "") 
+```
+
+### datasetName
+
+```{r}
+
+```
+
 ### taxonID
 
 ```{r}
@@ -253,4 +279,109 @@ write.csv(taxon, file = dwc_taxon_file, na = "", row.names = FALSE, fileEncoding
 ```{r start_distribution}
 distribution <- raw_data
 ```
+
+## Term mapping 
+
+Map the data to [Species Distribution](http://rs.gbif.org/extension/gbif/1.0/distribution.xml).
+
+### taxonID
+
+```{r}
+distribution %<>% mutate(taxonID = raw_taxon_id) 
+```
+
+### locationID
+
+```{r}
+distribution %<>% mutate(locationID = case_when(
+  raw_location == "Belgium" ~ "ISO_3166-2:BE",
+  raw_location == "Flanders" ~ "ISO_3166-2:BE-VLG",
+  raw_location == "Wallonia" ~ "ISO_3166-2:BE-WAL",
+  raw_location == "Brussels" ~ "ISO_3166-2:BE-BRU"))
+```
+
+### locality
+
+```{r}
+distribution %<>% mutate(locality = raw_location) 
+```
+
+### countryCode
+
+```{r}
+distribution %<>% mutate(countryCode = "BE")
+```
+
+### occurrenceStatus
+
+```{r}
+distribution %<>% mutate(occurrenceStatus = raw_occurrence_status)
+```
+
+### establishmentMeans
+
+```{r}
+distribution %<>% mutate(establishmentMeans = "introduced")
+```
+
+### eventDate
+
+Information for `eventDate` is contained in `raw_date_first_observation` and `raw_date_last_observation`, which we will express here as an ISO 8601 date `yyyy/yyyy` (`start_date/end_date`).
+
+Inspect `raw_data_first_observation`:
+
+```{r}
+unique(distribution $ raw_date_first_observation)
+```
+
+
+Clean `raw_date_first_observation` (remove `>`):
+
+```{r}
+distribution %<>% mutate(raw_date_first_observation = str_replace_all(raw_date_first_observation, ">", "")) 
+```
+
+`start_date_first_observation` contains empty values. For those we'll consider the publication year of the adhoc checklist as the date when the presence of the species was last verified, except for `Mephitis mephitis`, which was last observed in 2014. For this species, we use `2014` as start date:
+
+```{r}
+distribution %<>% mutate(start_date = case_when(
+  raw_scientific_name == "Mephitis mephitis (Schreber, 1776)" ~ "2014",
+  is.na(raw_date_first_observation) ~ "2018",
+  TRUE  ~ raw_date_first_observation
+)) 
+```
+
+`raw_date_last_observation` should not be before 2018 for those specific records:
+
+```{r}
+distribution %>% 
+  select(raw_date_first_observation, start_date, raw_date_last_observation) %>% 
+  filter (is.na(raw_date_first_observation)) %>% 
+  group_by_all() %>% 
+  summarize(records = n())
+```
+
+Inspect `raw_date_last_observation`:
+
+```{r}
+unique(distribution $ raw_date_last_observation)
+```
+
+In a similar way as for `raw_date_first_observation`, we use the publication year of the adhoc checklist when no end_year is provided:
+
+```{r}
+distribution %<>% mutate(end_date = case_when(
+  is.na(raw_date_last_observation) ~ "2018",
+  TRUE  ~ raw_date_last_observation
+)) 
+```
+
+Create `eventDate`:
+
+```{r}
+distribution %<>% mutate(eventDate = paste(start_date, end_date, sep = "/")) 
+```
+
+### source
+
 
