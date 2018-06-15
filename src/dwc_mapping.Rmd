@@ -51,6 +51,7 @@ raw_data_file = "../data/raw/ad_hoc_checklist_dump.csv"
 # Processed files:
 dwc_taxon_file = "../data/processed/taxon.csv"
 dwc_distribution_file = "../data/processed/distribution.csv"
+dwc_profile_file = "../data/processed/speciesprofile.csv"
 
 ```
 
@@ -449,6 +450,7 @@ species_profile %<>% mutate(taxonID = raw_taxon_id)
 species_profile %<>% mutate(isMarine = case_when(
   raw_realm == "freshwater | marine" ~ "TRUE",
   raw_realm == "estuarine" ~ "TRUE",
+  is.na(raw_realm) ~ "",
   TRUE ~ "FALSE"
 )) 
 ```
@@ -461,6 +463,7 @@ species_profile %<>% mutate(isFreshwater = case_when(
   raw_realm == "freshwater | marine" ~ "TRUE",
   raw_realm == "terrestrial | freshwater" ~ "TRUE",
   raw_realm == "estuarine" ~ "TRUE",
+  is.na(raw_realm) ~ "",
   TRUE ~ "FALSE"
 )) 
 ```
@@ -469,7 +472,73 @@ species_profile %<>% mutate(isFreshwater = case_when(
 
 ```{r}
 species_profile %<>% mutate(isTerrestrial = case_when(
-  raw_realm == "" ~ "TRUE",
-  raw_realm == "" ~ "TRUE",
+  raw_realm == "terrestrial" ~ "TRUE",
+  raw_realm == "terrestrial | freshwater" ~ "TRUE",
+  is.na(raw_realm) ~ "",
+  TRUE ~ "FALSE"
+))
 ```
 
+Show mapped values:
+
+```{r}
+species_profile %>%
+  select(raw_realm, isMarine, isFreshwater, isTerrestrial) %>%
+  group_by_all() %>%
+  summarize(records = n())
+```
+
+## Post-processing
+
+Remove the original columns:
+
+```{r}
+species_profile %<>% select(-starts_with("raw_"))
+```
+
+Sort on `taxonID`:
+
+```{r}
+species_profile %<>% arrange(taxonID)
+```
+
+Preview data:
+
+```{r}
+species_profile %>% head()
+```
+
+Save to CSV:
+
+```{r}
+write.csv(species_profile, file = dwc_profile_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+
+```{r start_native_range}
+native_range <- raw_data
+```
+
+Show unique values:
+
+```{r}
+native_range %>%
+  distinct(raw_native_range) %>%
+  arrange(raw_native_range)
+```
+
+## Pathway of introduction
+
+Pathway information (e.g. `aquaculture`) can be found in `raw_introduction_pathway`. 
+
+Create separate dataframe:
+
+```{r start_pathway}
+pathway <- raw_data
+```
+
+Show unique values:
+
+```{r}
+pathway %>%
+  distinct(raw_introduction_pathway) %>%
+  arrange(raw_introduction_pathway)
+```
