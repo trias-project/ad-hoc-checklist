@@ -558,23 +558,42 @@ Gather pathway information in `value`:
 native_range %<>% gather(key, value, paste0("range", c(1:3)), na.rm = TRUE)
 ```
 
-```{r}
-native_range %>%
-  distinct(value) %>%
-  arrange(value)
-```
-
 Remove whitespaces:
 
 ```{r}
 native_range %<>% mutate(value = str_trim(value))
 ```
 
+Inspect values:
+
+```{r}
+native_range %>%
+  distinct(value) %>%
+  arrange(value)
+```
 
 
 ```{r}
 native_range %<>% mutate(mapped_value = recode(value,
-  "Africa" = "Africa (WGSRPD:2)",
+  "Africa"                 = "Africa (WGSRPD:2)",
+  "Australa"               = "Australia (WGSRPD:50)",
+  "Canary islands"         = "Canary Islands (WGSRPD:21_CNY)",
+  "Central America"        = "Central America (WGSRPD:80"),
+  "China"                  = "China (WGSRPD:36)",
+  "Costa Rica"             = "Costa Rica (WGSRPD:80_COS",
+  "Cyprus"                 = "Cyprus (WGSRPD:34_CYP",
+  "eastern North America"  = "Eastern North America",
+  "Europe"                 = "Europe (WGSRPD:1)",
+  "Hawaï"                  = "Hawaii (WGSRPD:63_HAW)",
+  "Japan"                  = "Japan (WGSRPD:38_JAP)",
+  "Mexico"                 = "Mexico (WGSRPD:79)",
+  "New Zealand"            = "New Zealand (WGSRPD:51)",
+  "North Amercia"          = "Northern America (WGSRPD:7)",
+  "South America"          = "Southern America (WGSRPD:8)",
+  "Southeastern Europe"    = "Southeastern Europe (WGSRPD:13)",
+  "Southern Africa "       = "Southern Africa (WGSRPD:27)",
+  "Tasmania"               = "Tasmania (WGSRPD:50_TAS)",
+  "Vietnam"                = "Vietnam (WGSRPD:41_VIE)")
   
 
 
