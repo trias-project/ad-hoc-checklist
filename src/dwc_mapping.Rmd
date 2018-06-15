@@ -512,9 +512,32 @@ Save to CSV:
 
 ```{r}
 write.csv(species_profile, file = dwc_profile_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
+
+In the description extension we want to include several important characteristics (hereafter refered to as descriptors) about the species:
+
+* Native range
+* Pathway of introduction
+* Invasion stage
+
+The structure of the description extension is slightly different from the other core/extension files: information for a specific taxon (linked to taxonID) is provided in **multipele** lines within the csv file: one line per taxon per descriptor. In this way, we are able to include multipele descriptors for each species. 
+
+For each descriptor, we create a separate dataframe to process the specific information. We always specify *which descriptor* we map (`type` column) and its *specific content* (`description` column). After the mapping of these Darwin Core terms `type` and `value`, we merge the dataframes to generate one single description extension. We then continue the mapping process by adding the other Darwin Core terms (which content is independent of the type of descriptor, such as `language`).
+
+## Native range
+
+Native range information can be found in `raw_native_range`. 
+
+Create separate dataframe:
 
 ```{r start_native_range}
 native_range <- raw_data
+```
+
+Remove duplicates
+
+```{r}
+native_range %<>% filter(duplicated(native_range $ raw_scientific_name)==FALSE)
 ```
 
 Show unique values:
@@ -524,6 +547,41 @@ native_range %>%
   distinct(raw_native_range) %>%
   arrange(raw_native_range)
 ```
+
+```{r}
+native_range %<>% separate(raw_native_range, into = paste0("range", c(1:3)), sep = "\\| ", remove = F)
+```
+
+Gather pathway information in `value`:
+
+```{r}
+native_range %<>% gather(key, value, paste0("range", c(1:3)), na.rm = TRUE)
+```
+
+```{r}
+native_range %>%
+  distinct(value) %>%
+  arrange(value)
+```
+
+Remove whitespaces:
+
+```{r}
+native_range %<>% mutate(value = str_trim(value))
+```
+
+
+
+```{r}
+native_range %<>% mutate(mapped_value = recode(value,
+  "Africa" = "Africa (WGSRPD:2)",
+  
+
+
+
+```
+
+
 
 ## Pathway of introduction
 
