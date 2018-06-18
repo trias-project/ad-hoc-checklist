@@ -644,7 +644,7 @@ Pathway information (e.g. `aquaculture`) can be found in `raw_introduction_pathw
 Create separate dataframe:
 
 ```{r start_pathway}
-pathway <- raw_data
+pathway_desc <- raw_data
 ```
 
 Show unique values:
@@ -727,6 +727,45 @@ Keep only non-empty descriptions:
 pathway_desc %<>% filter(!is.na(description) & description != "")
 ```
 
+
+## Invasion stage
+
+Create separate dataframe:
+
+```{r start_invasion_stage}
+invasion_stage <- raw_data
+```
+
+The information for invasion stage is contained in `raw_degree_of_establishment`:
+
+```{r}
+invasion_stage %>%
+  select(raw_degree_of_establishment) %>%
+  group_by_all() %>%
+  summarize(records = n()) 
+```
+
+Map the data:
+
+```{r}
+invasion_stage %<>% mutate(description = case_when(
+  raw_degree_of_establishment == "captive" | 
+  raw_degree_of_establishment == "casual" |
+  raw_degree_of_establishment == "cultivated" |
+  raw_degree_of_establishment == "reproducing" |
+  raw_degree_of_establishment == "transported" ~ "introduced",
+  raw_degree_of_establishment == "colonizing" |
+  raw_degree_of_establishment == "established" |
+  raw_degree_of_establishment == "invasive" ~ "established"
+))
+```
+
+Show mapped values:
+
+```{r}
+invasion_stage %>%
+  select(raw_degree_of_establishment, description) %>%
+  group_by_all() %>%
   summarize(records = n())
 ```
 
@@ -747,3 +786,59 @@ description_ext <- bind_rows(native_range, pathway_desc, invasion_stage)
 ## Term mapping
 
 Map the data to [Taxon Description](http://rs.gbif.org/extension/gbif/1.0/description.xml).
+
+### taxonID
+
+```{r}
+description_ext %<>% mutate(taxonID = raw_taxon_id)
+```
+
+### description
+
+```{r}
+description_ext %<>% mutate(description = description)
+```
+
+### type
+
+```{r}
+description_ext %<>% mutate(type = type)
+```
+
+### language
+
+```{r}
+description_ext %<>% mutate(language = "en")
+```
+
+## Post-processing
+
+Remove the original columns:
+
+```{r}
+description_ext %<>% select(-starts_with("raw_"))
+```
+
+Move `taxonID` to the first position:
+
+```{r}
+description_ext %<>% select(taxonID, everything())
+```
+
+Sort on `taxonID` to group description information per taxon:
+
+```{r}
+description_ext %<>% arrange(taxonID)
+```
+
+Preview data:
+
+```{r}
+description_ext %>% head(10)
+```
+
+Save to CSV:
+
+```{r}
+write.csv(description_ext, file = dwc_description_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
