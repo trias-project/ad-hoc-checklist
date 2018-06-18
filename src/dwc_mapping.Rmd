@@ -564,6 +564,18 @@ Remove whitespaces:
 native_range %<>% mutate(value = str_trim(value))
 ```
 
+Remove question marks:
+
+```{r}
+native_range %<>% mutate(value = str_replace_all(value, "\\?", ""))
+```
+
+Capitalize first letters:
+
+```{r}
+native_range %<>% mutate(value = str_to_title(value)) 
+```
+
 Inspect values:
 
 ```{r}
@@ -572,17 +584,17 @@ native_range %>%
   arrange(value)
 ```
 
-
 ```{r}
 native_range %<>% mutate(mapped_value = recode(value,
   "Africa"                 = "Africa (WGSRPD:2)",
   "Australa"               = "Australia (WGSRPD:50)",
-  "Canary islands"         = "Canary Islands (WGSRPD:21_CNY)",
-  "Central America"        = "Central America (WGSRPD:80"),
+  "Canary Islands"         = "Canary Islands (WGSRPD:21_CNY)",
+  "Central America"        = "Central America (WGSRPD:80)",
   "China"                  = "China (WGSRPD:36)",
-  "Costa Rica"             = "Costa Rica (WGSRPD:80_COS",
-  "Cyprus"                 = "Cyprus (WGSRPD:34_CYP",
-  "eastern North America"  = "Eastern North America",
+  "Costa Rica"             = "Costa Rica (WGSRPD:80_COS)",
+  "Cyprus"                 = "Cyprus (WGSRPD:34_CYP)",
+  "East Africa"            = "Eastern Africa",
+  "East Asia"              = "Eastern Asia",
   "Europe"                 = "Europe (WGSRPD:1)",
   "Hawaï"                  = "Hawaii (WGSRPD:63_HAW)",
   "Japan"                  = "Japan (WGSRPD:38_JAP)",
@@ -593,14 +605,37 @@ native_range %<>% mutate(mapped_value = recode(value,
   "Southeastern Europe"    = "Southeastern Europe (WGSRPD:13)",
   "Southern Africa "       = "Southern Africa (WGSRPD:27)",
   "Tasmania"               = "Tasmania (WGSRPD:50_TAS)",
-  "Vietnam"                = "Vietnam (WGSRPD:41_VIE)")
-  
-
-
-
+  "Vietnam"                = "Vietnam (WGSRPD:41_VIE)"))
 ```
 
+Show mapped values:
 
+```{r}
+native_range %>%
+  select(value, mapped_value) %>%
+  group_by(value, mapped_value) %>%
+  summarize(records = n()) %>%
+  arrange(value)
+```
+
+Drop `key` and `value` column and rename `mapped value`:
+
+```{r}
+native_range %<>% select(-key, -value)
+native_range %<>% rename(description = mapped_value)
+```
+
+Keep only non-empty descriptions:
+
+```{r}
+native_range %<>% filter(!is.na(description) & description != "")
+```
+
+Create a `type` field to indicate the type of description:
+
+```{r}
+native_range %<>% mutate(type = "native range")
+```
 
 ## Pathway of introduction
 
