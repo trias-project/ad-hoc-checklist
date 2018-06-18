@@ -52,7 +52,7 @@ raw_data_file = "../data/raw/ad_hoc_checklist_dump.csv"
 dwc_taxon_file = "../data/processed/taxon.csv"
 dwc_distribution_file = "../data/processed/distribution.csv"
 dwc_profile_file = "../data/processed/speciesprofile.csv"
-
+dwc_description_file = "../data/processed/description.csv"
 ```
 
 # # Read and pre-process raw data
@@ -650,7 +650,100 @@ pathway <- raw_data
 Show unique values:
 
 ```{r}
-pathway %>%
+pathway_desc %>%
   distinct(raw_introduction_pathway) %>%
   arrange(raw_introduction_pathway)
 ```
+
+All terms are mapped to the CBD standard. 
+
+Separate data based on pipe:
+
+```{r}
+pathway_desc %<>% separate(raw_introduction_pathway, into = c(paste("pathway", c(1,2), sep = "_")), sep = "\\|")
+```
+
+Gather data
+
+```{r}
+pathway_desc %<>% gather(
+  key, value,
+  pathway_1, pathway_2,
+  na.rm = TRUE, # Also removes records for which there is no pathway_1
+  convert = FALSE)
+```
+
+Sort on `taxonID` to see pathways in context for each record:
+
+```{r}
+pathway_desc %<>% arrange(raw_taxon_id)
+```
+
+Show unique values:
+
+```{r}
+pathway_desc %>%
+  distinct(value) %>%
+  arrange(value) 
+```
+
+Add prefix `cbd_2014_pathway`:
+
+```{r}
+pathway_desc %<>% mutate(mapped_value = paste ("cbd_2014_pathway", value, sep = ":"))
+```
+
+Show mapped values:
+
+```{r}
+pathway_desc %>%
+  select(value, mapped_value) %>%
+  group_by(value, mapped_value) %>%
+  summarize(records = n()) %>%
+  arrange(value) 
+```
+
+Drop `key` and `value` column:
+
+```{r}
+pathway_desc %<>% select(-key, -value)
+```
+
+Change column name `mapped_value` to `description`:
+
+```{r}
+pathway_desc %<>%  rename(description = mapped_value)
+```
+
+Create a `type` field to indicate the type of description:
+
+```{r}
+pathway_desc %<>% mutate (type = "pathway")
+```
+
+Keep only non-empty descriptions:
+
+```{r}
+pathway_desc %<>% filter(!is.na(description) & description != "")
+```
+
+  summarize(records = n())
+```
+
+Create a `type` field to indicate the type of description:
+
+```{r}
+invasion_stage %<>% mutate(type = "invasion stage")
+```
+
+## Union descriptions
+
+Union native range, pathway of introduction and invasion stage:
+
+```{r start_description_ext}
+description_ext <- bind_rows(native_range, pathway_desc, invasion_stage)
+```
+
+## Term mapping
+
+Map the data to [Taxon Description](http://rs.gbif.org/extension/gbif/1.0/description.xml).
