@@ -50,12 +50,13 @@ raw_data_file = "../data/raw/ad_hoc_checklist_dump.csv"
 
 # Processed files:
 dwc_taxon_file = "../data/processed/taxon.csv"
+dwc_literature_references_file = "../data/processed/references.csv"
 dwc_distribution_file = "../data/processed/distribution.csv"
 dwc_profile_file = "../data/processed/speciesprofile.csv"
 dwc_description_file = "../data/processed/description.csv"
 ```
 
-# # Read and pre-process raw data
+## Read and pre-process raw data
 
 The original spreadsheet can be found [here](https://docs.google.com/spreadsheets/d/1LeXXbry2ArK2rngsmFjz_xErwE1KwQ8ujtvHNmTVA6E/edit#gid=0). We need to retrieve this spreadsheet and select the specific worksheet first:
 
@@ -93,7 +94,7 @@ raw_data %<>%
 
 ## Generate taxonID
 
-To uniquely identify a taxon in the taxon core and reference taxa in the extensions, we need a `taxonID`. Since we need it in all generated files, we generate it here in the raw data frame. It is a combination of `dataset-shortname:taxon:` and a hash based on the scientific name. As long as the scientific name doesn't change, the ID will be stable.  Some of the names require some minor cleaning first though:
+To uniquely identify a taxon in the taxon core and reference taxa in the extensions, we need a `taxonID`. Since we need it in all generated files, we generate it here in the raw data frame. It is a combination of `dataset-shortname:taxon:` and a hash based on the scientific name. As long as the scientific name doesn't change, the ID will be stable.  Before we assign a taxonID, some of the scientific names require a minor cleaning step first:
 
 ```{r}
 raw_data %<>% mutate(scientificname_clean = str_replace_all(scientific_name, "( sp\\.)|( spec\\.)| sp A", ""))
@@ -107,6 +108,7 @@ raw_data %>%
   filter(str_detect(scientific_name, "( sp\\.)|( spec\\.)| sp A") == TRUE)
 ```
 
+Generate taxonID:
 
 ```{r}
 # Vectorize the digest function (The digest() function isn't vectorized. So if you pass in a vector, you get one value for the whole vector rather than a digest for each element of the vector):
@@ -118,7 +120,7 @@ raw_data %<>% mutate(taxon_id = paste("ad-hoc-checklist", "taxon", vdigest(scien
 
 ## Remove duplicates
 
-Select all rows in the dataframe that contain duplicates:
+Some taxa are recorded multiple times:
 
 ```{r}
 duplicates <- raw_data %>%  
@@ -126,11 +128,11 @@ duplicates <- raw_data %>%
   select(scientific_name)
 ```
 
-```{r, eval=FALSE}
+```{r, echo=FALSE}
 duplicates
 ```
 
-Give all information about these duplicated taxa:
+Show all available information about these duplicated taxa:
 
 ```{r}
 raw_data %>% 
@@ -138,13 +140,13 @@ raw_data %>%
   arrange(scientific_name)
 ```
 
-All duplicates differ in their distribution information, i.e. `location`, `date_first_observation` and `date_last_observation`. For the mapping of the taxon core, the literature reference extension, the species profile extension and the description extension, we can remove these duplicated taxa. Before doing this, we generate the data frame `distribution` here (containingin the duplicated rows) to continue the mapping in (reference to distribution section):
+These taxa are repeated in the checklist as they contain distribution information for multipele regions (`location`), with the date of first/last observation (`date_first_observation` and `date_last_observation`) differing between those regions. This information is thus only relevant for the mapping of the distribution extension. We save this information in a separate dataframe:
 
 ```{r}
-distribution <- raw_data
+raw_with_duplicates <- raw_data
 ```
 
-Select unique scientific names (remove duplicated records):
+For the mapping of the taxon core, the literature reference extension, the species profile extension and the description extension, we can remove the duplicated records:
 
 ```{r}
 raw_data %<>% filter(duplicated(raw_data $ scientific_name)==FALSE)
@@ -156,10 +158,10 @@ Add prefix `raw_` to all column names to avoid name clashes with Darwin Core ter
 
 ```{r}
 colnames(raw_data) <- paste0("raw_", colnames(raw_data))
-colnames(distribution) <- paste0("raw_", colnames(distribution))
+colnames(raw_with_duplicates) <- paste0("raw_", colnames(raw_with_duplicates))
 ```
  
-Preview data:
+Preview raw data:
 
 ```{r}
 raw_data %>% head()
@@ -334,7 +336,7 @@ literature_references %<>% mutate(taxonID = raw_taxon_id)
 ### bibliographicCitation
 
 ```{r}
-literature_references %<>% mutate(bibliographicCitation = full_reference) 
+literature_references %<>% mutate(bibliographicCitation = value) 
 ```
 
 ## Post-processing
@@ -342,13 +344,7 @@ literature_references %<>% mutate(bibliographicCitation = full_reference)
 Remove the original columns:
 
 ```{r}
-literature_references %<>% select(-starts_with("raw_"), -references_sep, -full_reference)
-```
-
-Sort on `taxonID`:
-
-```{r}
-literature_references %<>% arrange(taxonID) 
+literature_references %<>% select(-starts_with("raw_"), -key, -value)
 ```
 
 Preview data:
