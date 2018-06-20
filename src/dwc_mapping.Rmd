@@ -309,13 +309,13 @@ literature_references <- raw_data
 
 The literature reference extension is a dataframe in which one row contains one single full reference per taxon. We generate this file here in several steps:
 
-Separate `raw_source` by using `|` as a separator:
+Separate reference information in `raw_source` using `|` as a separator:
 
 ```{r}
 literature_references %<>% separate(raw_source, into = c(paste("reference", c(1,2), sep = "_")), sep = "\\|")
 ```
 
-Gather references and sort on taxonID:
+Gather references and sort on `taxonID`:
 
 ```{r}
 literature_references %<>% 
@@ -408,14 +408,13 @@ distribution %<>% mutate(establishmentMeans = "introduced")
 
 ### eventDate
 
-Information for `eventDate` is contained in `raw_date_first_observation` and `raw_date_last_observation`, which we will express here as an ISO 8601 date `yyyy/yyyy` (`start_date/end_date`).
+Information for `eventDate` is contained in `raw_date_first_observation` and `raw_date_last_observation`, which we will express here in an ISO 8601 date format `yyyy/yyyy` (`start_date/end_date`).
 
 Inspect `raw_data_first_observation`:
 
 ```{r}
 unique(distribution $ raw_date_first_observation)
 ```
-
 
 Clean `raw_date_first_observation` (remove `>`):
 
