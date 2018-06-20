@@ -116,6 +116,40 @@ vdigest <- Vectorize(digest)
 raw_data %<>% mutate(taxon_id = paste("ad-hoc-checklist", "taxon", vdigest(scientificname_clean, algo="md5"), sep = ":"))
 ```
 
+## Remove duplicates
+
+Select all rows in the dataframe that contain duplicates:
+
+```{r}
+duplicates <- raw_data %>%  
+  slice(which(duplicated(raw_data $ scientific_name) == "TRUE")) %>% 
+  select(scientific_name)
+```
+
+```{r, eval=FALSE}
+duplicates
+```
+
+Give all information about these duplicated taxa:
+
+```{r}
+raw_data %>% 
+  filter(scientific_name %in% duplicates $ scientific_name) %>% 
+  arrange(scientific_name)
+```
+
+All duplicates differ in their distribution information, i.e. `location`, `date_first_observation` and `date_last_observation`. For the mapping of the taxon core, the literature reference extension, the species profile extension and the description extension, we can remove these duplicated taxa. Before doing this, we generate the data frame `distribution` here (containingin the duplicated rows) to continue the mapping in (reference to distribution section):
+
+```{r}
+distribution <- raw_data
+```
+
+Select unique scientific names (remove duplicated records):
+
+```{r}
+raw_data %<>% filter(duplicated(raw_data $ scientific_name)==FALSE)
+```
+
 ## Further pre-processing:
 
 Add prefix `raw_` to all column names to avoid name clashes with Darwin Core terms:
@@ -166,6 +200,10 @@ taxon %<>% mutate(accessRights = "https://www.inbo.be/en/norms-data-use")
 
 ### references
 
+```{r}
+taxon %<>% mutate(references = raw_identifier)
+```
+
 ### datasetID
 
 ```{r}
@@ -175,7 +213,7 @@ taxon %<>% mutate(datasetID = "")
 ### datasetName
 
 ```{r}
-
+taxon %<>% mutate(datasetName = "") 
 ```
 
 ### taxonID
@@ -186,32 +224,8 @@ taxon %<>% mutate(taxonID = raw_taxon_id)
 
 ### scientificName
 
-Deal with duplicates:
-
-Select all rows in the dataframe that contain duplicates:
-
 ```{r}
-duplicates <- taxon %>%  
-  slice(which(duplicated(taxon $ raw_scientific_name) == "TRUE")) %>% 
-  select(raw_scientific_name)
-```
-
-```{r, eval=FALSE}
-duplicates
-```
-
-Give all information about these duplicated taxa:
-
-```{r}
-taxon %>% 
-  filter(raw_scientific_name %in% duplicates $ raw_scientific_name) %>% 
-  arrange(raw_scientific_name)
-```
-
-Select unique scientific names (remove duplicated records):
-
-```{r}
-taxon %<>% filter(duplicated(taxon$ raw_scientific_name)==FALSE)
+taxon %<>% mutate(scientificName = raw_scientificname_clean) 
 ```
 
 ### kingdom
@@ -253,7 +267,7 @@ taxon %<>% mutate(taxonRank = raw_taxon_rank)
 ### nomenclaturalCode
 
 ```{r}
-taxon %>% mutate(nomenclaturalCode = raw_nomenclatural_code)
+taxon %<>% mutate(nomenclaturalCode = raw_nomenclatural_code)
 ```
 
 ## Post-processing
@@ -277,10 +291,6 @@ write.csv(taxon, file = dwc_taxon_file, na = "", row.names = FALSE, fileEncoding
 ```
 
 # Create distribution extension
-
-```{r start_distribution}
-distribution <- raw_data
-```
 
 ## Term mapping 
 
@@ -387,7 +397,7 @@ distribution %<>% mutate(eventDate = paste(start_date, end_date, sep = "/"))
 ### source
 
 ```{r}
-
+distribution %<>% mutate(source = raw_identifier) 
 ```
 
 ## Post-processing
