@@ -167,7 +167,7 @@ Preview raw data:
 raw_data %>% head()
 ```
 
-# Create taxon core
+# Create taxon cores
 
 ```{r start_taxon}
 taxon <- raw_data
@@ -362,6 +362,10 @@ write.csv(literature_references, file = dwc_literature_references_file, na = "",
 
 # Create distribution extension
 
+```{r}
+distribution <- raw_with_duplicates
+```
+
 ## Term mapping 
 
 Map the data to [Species Distribution](http://rs.gbif.org/extension/gbif/1.0/distribution.xml).
@@ -376,7 +380,7 @@ distribution %<>% mutate(taxonID = raw_taxon_id)
 
 ```{r}
 distribution %<>% mutate(locationID = case_when(
-  raw_location == "Belgium" ~ "ISO_3166-2:BE",
+  is.na(raw_location) ~ "ISO_3166-2:BE",
   raw_location == "Flanders" ~ "ISO_3166-2:BE-VLG",
   raw_location == "Wallonia" ~ "ISO_3166-2:BE-WAL",
   raw_location == "Brussels" ~ "ISO_3166-2:BE-BRU"))
@@ -385,7 +389,9 @@ distribution %<>% mutate(locationID = case_when(
 ### locality
 
 ```{r}
-distribution %<>% mutate(locality = raw_location) 
+distribution %<>% mutate(locality = case_when(
+  is.na(raw_location) ~ "Belgium",
+  TRUE ~ raw_location)) 
 ```
 
 ### countryCode
