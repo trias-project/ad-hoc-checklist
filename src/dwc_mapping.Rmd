@@ -599,6 +599,9 @@ Save to CSV:
 write.csv(species_profile, file = dwc_profile_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
+
+# Create description extension
+
 In the description extension we want to include several important characteristics (hereafter refered to as descriptors) about the species:
 
 * Native range
@@ -619,12 +622,6 @@ Create separate dataframe:
 native_range <- raw_data
 ```
 
-Remove duplicates
-
-```{r}
-native_range %<>% filter(duplicated(native_range $ raw_scientific_name)==FALSE)
-```
-
 Show unique values:
 
 ```{r}
@@ -633,41 +630,39 @@ native_range %>%
   arrange(raw_native_range)
 ```
 
+Separate values: 
+
 ```{r}
-native_range %<>% separate(raw_native_range, into = paste0("range", c(1:3)), sep = "\\| ", remove = F)
+native_range %<>% separate(raw_native_range, 
+  into = paste0("range", c(1:3)),
+  sep = "\\| ", 
+  remove = FALSE)
 ```
 
-Gather pathway information in `value`:
+Gather pathway information in columns `key` and `value`:
 
 ```{r}
 native_range %<>% gather(key, value, paste0("range", c(1:3)), na.rm = TRUE)
 ```
 
-Remove whitespaces:
+Clean native range information in `value` somewhat:
 
 ```{r}
-native_range %<>% mutate(value = str_trim(value))
+native_range %<>% 
+  mutate(value = str_trim(value)) %>%  # Remove whitespaces
+  mutate(value = str_replace_all(value, "\\?", "")) %>%  # Remove question 
+  mutate(value = str_to_title(value)) 
 ```
 
-Remove question marks:
-
-```{r}
-native_range %<>% mutate(value = str_replace_all(value, "\\?", ""))
-```
-
-Capitalize first letters:
-
-```{r}
-native_range %<>% mutate(value = str_to_title(value)) 
-```
-
-Inspect values:
+Inspect cleaned values:
 
 ```{r}
 native_range %>%
   distinct(value) %>%
   arrange(value)
 ```
+
+Map pathway information:
 
 ```{r}
 native_range %<>% mutate(mapped_value = recode(value,
@@ -706,8 +701,9 @@ native_range %>%
 Drop `key` and `value` column and rename `mapped value`:
 
 ```{r}
-native_range %<>% select(-key, -value)
-native_range %<>% rename(description = mapped_value)
+native_range %<>% 
+  select(-key, -value) %>% 
+  rename(description = mapped_value)
 ```
 
 Keep only non-empty descriptions:
