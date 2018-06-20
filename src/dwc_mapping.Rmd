@@ -156,6 +156,7 @@ Add prefix `raw_` to all column names to avoid name clashes with Darwin Core ter
 
 ```{r}
 colnames(raw_data) <- paste0("raw_", colnames(raw_data))
+colnames(distribution) <- paste0("raw_", colnames(distribution))
 ```
  
 Preview data:
@@ -289,6 +290,73 @@ Save to CSV:
 ```{r}
 write.csv(taxon, file = dwc_taxon_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
 ```
+
+# Create literature references extension
+
+```{r}
+literature_references <- raw_data
+```
+
+## Pre-processing
+
+The literature reference extension is a dataframe in which one row contains one single full reference per taxon. We generate this file here in several steps:
+
+Separate `raw_source` by using `|` as a separator:
+
+```{r}
+literature_references %<>% separate(raw_source, into = c(paste("reference", c(1,2), sep = "_")), sep = "\\|")
+```
+
+Gather references and sort on taxonID:
+
+```{r}
+literature_references %<>% 
+  gather(key, value, reference_1, reference_2, na.rm = TRUE) %>% 
+  arrange(raw_taxon_id)
+```
+
+## Term mapping
+
+Map the data to [Literature References](http://rs.gbif.org/extension/gbif/1.0/references.xml).
+
+### taxonID
+
+```{r}
+literature_references %<>% mutate(taxonID = raw_taxon_id)
+```
+
+### bibliographicCitation
+
+```{r}
+literature_references %<>% mutate(bibliographicCitation = full_reference) 
+```
+
+## Post-processing
+
+Remove the original columns:
+
+```{r}
+literature_references %<>% select(-starts_with("raw_"), -references_sep, -full_reference)
+```
+
+Sort on `taxonID`:
+
+```{r}
+literature_references %<>% arrange(taxonID) 
+```
+
+Preview data:
+
+```{r}
+literature_references %>% head()
+```
+
+Save to CSV:
+
+```{r}
+write.csv(literature_references, file = dwc_literature_references_file, na = "", row.names = FALSE, fileEncoding = "UTF-8")
+```
+
 
 # Create distribution extension
 
