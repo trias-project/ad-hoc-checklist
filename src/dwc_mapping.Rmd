@@ -736,15 +736,15 @@ pathway_desc %>%
   arrange(raw_introduction_pathway)
 ```
 
-All terms are mapped to the CBD standard. 
-
-Separate data based on pipe:
+Separate data  on `|` in 2 columns:
 
 ```{r}
-pathway_desc %<>% separate(raw_introduction_pathway, into = c(paste("pathway", c(1,2), sep = "_")), sep = "\\|")
+pathway_desc %<>% separate(raw_introduction_pathway, 
+    into = c(paste("pathway", c(1,2), sep = "_")),
+    sep = "\\|")
 ```
 
-Gather data
+Gather pathways in a key and value column:
 
 ```{r}
 pathway_desc %<>% gather(
@@ -767,6 +767,8 @@ pathway_desc %>%
   distinct(value) %>%
   arrange(value) 
 ```
+
+We use the [CBD 2014 pathway vocabulary](https://www.cbd.int/doc/meetings/sbstta/sbstta-18/official/sbstta-18-09-add1-en.pdf) to standardize this information. The vocubulary has [these values](https://github.com/trias-project/vocab/tree/master/vocabulary/pathway). The values in this checklist already match to the CBD standard.
 
 Add prefix `cbd_2014_pathway`:
 
@@ -807,7 +809,6 @@ Keep only non-empty descriptions:
 ```{r}
 pathway_desc %<>% filter(!is.na(description) & description != "")
 ```
-
 
 ## Invasion stage
 
