@@ -101,7 +101,7 @@ To uniquely identify a taxon in the taxon core and reference taxa in the extensi
 vdigest <- Vectorize(digest)
 
 # Generate taxonID:
-raw_data %<>% mutate(taxon_id = paste("ad-hoc-checklist", "taxon", vdigest(scientificname_clean, algo="md5"), sep = ":"))
+raw_data %<>% mutate(taxon_id = paste("ad-hoc-checklist", "taxon", vdigest(scientific_name, algo="md5"), sep = ":"))
 ```
 
 ## Remove duplicates
@@ -220,7 +220,7 @@ taxon %<>% mutate(taxonID = raw_taxon_id)
 ### scientificName
 
 ```{r}
-taxon %<>% mutate(scientificName = raw_scientificname_clean) 
+taxon %<>% mutate(scientificName = raw_scientific_name) 
 ```
 
 ### kingdom
@@ -660,7 +660,7 @@ native_range %<>% mutate(mapped_value = recode(value,
   "Costa Rica"             = "Costa Rica (WGSRPD:80_COS)",
   "Cyprus"                 = "Cyprus (WGSRPD:34_CYP)",
   "East Africa"            = "Eastern Africa",
-  "East Asia"              = "Eastern Asia",
+  "East Asia"              = "Eastern Asia (WGSRPD:38)",
   "Europe"                 = "Europe (WGSRPD:1)",
   "Hawaï"                  = "Hawaii (WGSRPD:63_HAW)",
   "Japan"                  = "Japan (WGSRPD:38_JAP)",
