@@ -827,7 +827,9 @@ invasion_stage %>%
   summarize(records = n()) 
 ```
 
-Map the data:
+Our vocabulary for invasion stage is based on the [invasion stage vocabulary from Blackburn et al. (2011)](http://doc.rero.ch/record/24725/files/bach_puf.pdf). We decided **not** to use the terms `naturalized` (because often, there's no sensible criterium to distinguish between casual/naturalized of naturalized/established) and `invasive` (which is a term that can only be applied after a risk assessment).
+
+Map data to Blackburn at al. (2011) vocabulary:
 
 ```{r}
 invasion_stage %<>% mutate(description = case_when(
@@ -838,7 +840,8 @@ invasion_stage %<>% mutate(description = case_when(
   raw_degree_of_establishment == "transported" ~ "introduced",
   raw_degree_of_establishment == "colonizing" |
   raw_degree_of_establishment == "established" |
-  raw_degree_of_establishment == "invasive" ~ "established"
+  raw_degree_of_establishment == "invasive" ~ "established",
+  is.na(raw_degree_of_establishment) ~ ""
 ))
 ```
 
