@@ -841,8 +841,13 @@ invasion_stage %<>% mutate(description = case_when(
   raw_degree_of_establishment == "colonizing" |
   raw_degree_of_establishment == "established" |
   raw_degree_of_establishment == "invasive" ~ "established",
-  is.na(raw_degree_of_establishment) ~ ""
 ))
+```
+
+Remove empty values:
+
+```{r}
+invasion_stage %<>% filter(!is.na(description))
 ```
 
 Show mapped values:
