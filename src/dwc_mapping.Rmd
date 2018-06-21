@@ -94,21 +94,7 @@ raw_data %<>%
 
 ## Generate taxonID
 
-To uniquely identify a taxon in the taxon core and reference taxa in the extensions, we need a `taxonID`. Since we need it in all generated files, we generate it here in the raw data frame. It is a combination of `dataset-shortname:taxon:` and a hash based on the scientific name. As long as the scientific name doesn't change, the ID will be stable.  Before we assign a taxonID, some of the scientific names require a minor cleaning step first:
-
-```{r}
-raw_data %<>% mutate(scientificname_clean = str_replace_all(scientific_name, "( sp\\.)|( spec\\.)| sp A", ""))
-```
-
-Show cleaned values:
-
-```{r}
-raw_data %>% 
-  select(scientific_name, scientificname_clean) %>% 
-  filter(str_detect(scientific_name, "( sp\\.)|( spec\\.)| sp A") == TRUE)
-```
-
-Generate taxonID:
+To uniquely identify a taxon in the taxon core and reference taxa in the extensions, we need a `taxonID`. Since we need it in all generated files, we generate it here in the raw data frame. It is a combination of `dataset-shortname:taxon:` and a hash based on the scientific name. As long as the scientific name doesn't change, the ID will be stable.  
 
 ```{r}
 # Vectorize the digest function (The digest() function isn't vectorized. So if you pass in a vector, you get one value for the whole vector rather than a digest for each element of the vector):
