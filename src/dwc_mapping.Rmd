@@ -416,6 +416,14 @@ Clean `raw_date_first_observation` (remove `>`):
 distribution %<>% mutate(raw_date_first_observation = str_replace_all(raw_date_first_observation, ">", "")) 
 ```
 
+One of these observation dates is a range (`2005-2009`). In this case, we use the first year of this range in the mapping (`2005`).
+
+```{r}
+distribution %<>% mutate(raw_date_first_observation = recode(raw_date_first_observation,
+     "2005-2009" = "2005"
+))
+```
+
 `start_date_first_observation` contains empty values. For those we'll consider the publication year of the adhoc checklist as the date when the presence of the species was last verified, except for `Mephitis mephitis`, which was last observed in 2014. For this species, we use `2014` as start date:
 
 ```{r}
