@@ -377,7 +377,9 @@ distribution %<>% mutate(locationID = case_when(
 ```{r}
 distribution %<>% mutate(locality = case_when(
   is.na(raw_location) ~ "Belgium",
-  TRUE ~ raw_location)) 
+  raw_location == "Flanders" ~ "Flemish Region",
+  raw_location == "Wallonia" ~ "Walloon Region",
+  raw_location == "Brussels" ~ "Brussels-Capital Region"))
 ```
 
 ### countryCode
