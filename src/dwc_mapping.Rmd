@@ -95,7 +95,8 @@ raw_data %<>%
 Change `Lacerta viridis (Laurenti, 1768) / bilineata` to `Lacerta viridis s.l.` (see [this issue](https://github.com/trias-project/ad-hoc-checklist/issues/19))
 
 ```{r}
-raw_data %<>% mutate(raw_scientific_name) 
+raw_data %<>% mutate(scientific_name = recode(scientific_name,
+   "Lacerta viridis (Laurenti, 1768) / bilineata" = "Lacerta viridis s.l.")) 
 ```
 
 ## Generate taxonID
@@ -191,12 +192,6 @@ taxon %<>% mutate(rightsHolder = "INBO")
 
 ```{r}
 taxon %<>% mutate(accessRights = "https://www.inbo.be/en/norms-data-use") 
-```
-
-### references
-
-```{r}
-taxon %<>% mutate(references = raw_identifier)
 ```
 
 ### datasetID
