@@ -92,6 +92,12 @@ raw_data %<>%
   clean_names()               # Have sensible (lowercase) column names
 ```
 
+Change `Lacerta viridis (Laurenti, 1768) / bilineata` to `Lacerta viridis s.l.` (see [this issue](https://github.com/trias-project/ad-hoc-checklist/issues/19))
+
+```{r}
+raw_data %<>% mutate(raw_scientific_name) 
+```
+
 ## Generate taxonID
 
 To uniquely identify a taxon in the taxon core and reference taxa in the extensions, we need a `taxonID`. Since we need it in all generated files, we generate it here in the raw data frame. It is a combination of `dataset-shortname:taxon:` and a hash based on the scientific name. As long as the scientific name doesn't change, the ID will be stable.  
