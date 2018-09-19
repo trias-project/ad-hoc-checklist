@@ -783,12 +783,16 @@ pathway_desc %>%
   arrange(value) 
 ```
 
-We use the [CBD 2014 pathway vocabulary](https://www.cbd.int/doc/meetings/sbstta/sbstta-18/official/sbstta-18-09-add1-en.pdf) to standardize this information. The vocubulary has [these values](https://github.com/trias-project/vocab/tree/master/vocabulary/pathway). The values in this checklist already match to the CBD standard.
+We use the [CBD 2014 pathway vocabulary](https://www.cbd.int/doc/meetings/sbstta/sbstta-18/official/sbstta-18-09-add1-en.pdf) to standardize this information. The vocubulary has [these values](https://github.com/trias-project/vocab/tree/master/vocabulary/pathway).
 
-Add prefix `cbd_2014_pathway`:
+The values in this checklist should already match to the CBD standard, but we'll do a regex match for lowercase and underscore strings as a check and prefix `cbd_2014_pathway` for those only:
 
 ```{r}
-pathway_desc %<>% mutate(mapped_value = paste ("cbd_2014_pathway", value, sep = ":"))
+pathway_desc %<>% mutate(mapped_value = case_when(
+  str_detect(value, "^[a-z_]+$") ~ paste("cbd_2014_pathway", value, sep = ":"),
+  is.na(value) ~ "",
+  TRUE ~ ""
+))
 ```
 
 Inspect mapped values:
