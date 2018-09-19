@@ -713,7 +713,10 @@ native_range %<>% mutate(mapped_value = recode(value,
   "Southeastern Europe"    = "Southeastern Europe (WGSRPD:13)",
   "Southern Africa "       = "Southern Africa (WGSRPD:27)",
   "Tasmania"               = "Tasmania (WGSRPD:50_TAS)",
-  "Vietnam"                = "Vietnam (WGSRPD:41_VIE)"))
+  "Vietnam"                = "Vietnam (WGSRPD:41_VIE)",
+# .default                 = "",
+  .missing                 = ""
+))
 ```
 
 Inspect mapped values:
