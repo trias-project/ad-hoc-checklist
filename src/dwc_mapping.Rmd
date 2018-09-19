@@ -331,7 +331,7 @@ literature_references <- input_data %>% distinct(input_taxon_id, .keep_all = TRU
 Separate values on `|` in 2 columns:
 
 ```{r}
-literature_references %<>% separate(input_source, into = c(paste("reference", c(1,2), sep = "_")), sep = "\\|")
+literature_references %<>% separate(input_source, into = c(paste("reference", c(1,2), sep = "_")), sep = " \\| ")
 ```
 
 Gather references and sort on `taxonID`:
@@ -663,7 +663,7 @@ Separate values on `|` in 3 columns:
 ```{r}
 native_range %<>% separate(input_native_range, 
   into = paste0("range", c(1:3)),
-  sep = "\\| ", 
+  sep = " \\| ", 
   remove = FALSE)
 ```
 
@@ -762,7 +762,7 @@ Separate values on `|` in 2 columns:
 ```{r}
 pathway_desc %<>% separate(input_introduction_pathway, 
     into = c(paste("pathway", c(1,2), sep = "_")),
-    sep = "\\|")
+    sep = " \\| ")
 ```
 
 Gather on `key` and `value`:
