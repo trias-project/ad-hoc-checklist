@@ -1,0 +1,16 @@
+name: "Ad hoc checklist of alien species in Belgium"
+output_dir: "../docs"
+include: ["static/"]
+navbar:
+  title: "ad-hoc-checklist"
+  left:
+    - text: "Darwin Core mapping"
+      href: dwc_mapping.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/trias-project/ad-hoc-checklist
+output:
+  html_document:
+    theme: yeti
+    df_print: paged
+    css: "static/css/trias.css"
