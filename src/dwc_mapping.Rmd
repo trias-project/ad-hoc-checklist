@@ -101,7 +101,7 @@ vdigest <- Vectorize(digest) # Vectorize digest function to work with vectors
 input_data %<>% mutate(input_taxon_id = paste(
   "ad-hoc-checklist",
   "taxon",
-  vdigest(paste(input_scientific_name), algo = "md5"),
+  vdigest(paste(input_scientific_name, input_kingdom), algo = "md5"),
   sep = ":"
 ))
 ```
