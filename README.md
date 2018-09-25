@@ -2,8 +2,6 @@
 
 ## Rationale
 
-<!-- This section gives a quick description of what this repository is for. At least update the "... the data of (blank) ..." or edit as you see fit. -->
-
 This repository contains the functionality to standardize the _Ad hoc checklist of alien species in Belgium_ (a list of alien species that are not yet included in authorative checklists) to a [Darwin Core checklist](https://www.gbif.org/dataset-classes) that can be harvested by [GBIF](http://www.gbif.org).
 
 ## Workflow
@@ -33,7 +31,7 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 │
 └── src
     ├── dwc_mapping.Rmd    : Darwin Core mapping script, core functionality of this repository
-    ├── _site.yml          : Settings to build website in /docs
+    ├── _site.yml          : Settings to build website in docs/
     └── index.Rmd          : Template for website homepage
 ```
 
@@ -44,7 +42,7 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 3. Open the `dwc_mapping.Rmd` [R Markdown file](https://rmarkdown.rstudio.com/) in RStudio
 4. Install any required packages
 5. Click `Run > Run All` to generate the processed data
-6. Alternatively, click `Build > Build website` to generate the processed data and build the website in `/docs` (advanced)
+6. Alternatively, click `Build > Build website` to generate the processed data and build the website in `docs/`
 
 ## Contributors
 
