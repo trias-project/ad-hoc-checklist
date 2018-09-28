@@ -85,12 +85,7 @@ colnames(input_data) <- paste0("input_", colnames(input_data))
 
 ## Scientific names
 
-Change `Lacerta viridis (Laurenti, 1768) / bilineata` to `Lacerta viridis s.l.` (see [this issue](https://github.com/trias-project/ad-hoc-checklist/issues/19)):
-
-```{r}
-input_data %<>% mutate(input_scientific_name = recode(input_scientific_name,
-   "Lacerta viridis (Laurenti, 1768) / bilineata" = "Lacerta viridis s.l.")) 
-```
+No cleaning required.
 
 ## Taxon IDs
 
