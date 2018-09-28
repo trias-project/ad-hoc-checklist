@@ -509,8 +509,10 @@ distribution %<>% mutate(eventDate = paste(start_date, end_date, sep = "/"))
 
 ### source
 
+Use the `input_source` field as is. Its content should be ` | ` separated for more than one reference.
+
 ```{r}
-distribution %<>% mutate(source = input_identifier) 
+distribution %<>% mutate(source = input_source) 
 ```
 
 ## Post-processing
