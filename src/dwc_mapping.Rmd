@@ -411,28 +411,34 @@ distribution %<>% mutate(taxonID = input_taxon_id)
 
 ### locationID
 
+Currently map for Belgian regions only:
+
 ```{r}
 distribution %<>% mutate(locationID = case_when(
-  is.na(input_location) ~ "ISO_3166-2:BE",
+  is.na(input_location) & input_country_code == "BE" ~ "ISO_3166-2:BE",
   input_location == "Flanders" ~ "ISO_3166-2:BE-VLG",
   input_location == "Wallonia" ~ "ISO_3166-2:BE-WAL",
-  input_location == "Brussels" ~ "ISO_3166-2:BE-BRU"))
+  input_location == "Brussels" ~ "ISO_3166-2:BE-BRU"
+))
 ```
 
 ### locality
 
+Currently map for Belgian regions only:
+
 ```{r}
 distribution %<>% mutate(locality = case_when(
-  is.na(input_location) ~ "Belgium",
+  is.na(input_location) & input_country_code == "BE" ~ "Belgium",
   input_location == "Flanders" ~ "Flemish Region",
   input_location == "Wallonia" ~ "Walloon Region",
-  input_location == "Brussels" ~ "Brussels-Capital Region"))
+  input_location == "Brussels" ~ "Brussels-Capital Region"
+))
 ```
 
 ### countryCode
 
 ```{r}
-distribution %<>% mutate(countryCode = "BE")
+distribution %<>% mutate(countryCode = input_country_code)
 ```
 
 ### occurrenceStatus
@@ -553,7 +559,7 @@ Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 species_profile <- input_data %>% distinct(input_taxon_id, .keep_all = TRUE)
 ```
 
-Only keep records for which the `input_realm` is not empty:
+Only keep records for which `input_realm` is not empty:
 
 ```{r}
 species_profile %<>% filter(!is.na(input_realm))
