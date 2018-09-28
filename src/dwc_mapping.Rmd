@@ -322,23 +322,28 @@ In this extension we will express references from `input_source`, separated and 
 
 ## Pre-processing
 
-Create a dataframe with unique taxa only (ignoring multiple distribution rows):
+Create a dataframe with all data (including multiple distributions), to capture potentially different `input_source` for different distributions of the same taxa:
 
 ```{r start_references}
-literature_references <- input_data %>% distinct(input_taxon_id, .keep_all = TRUE)
+literature_references <- input_data
 ```
 
-Separate values on `|` in 2 columns:
+Separate values on `|` in a maximum of 3 columns:
 
 ```{r}
-literature_references %<>% separate(input_source, into = c(paste("reference", c(1,2), sep = "_")), sep = " \\| ")
+literature_references %<>% separate(
+  input_source, 
+  into = c(paste("reference", c(1,2,3), sep = "_")), # New column name
+  sep = " \\| ",
+  extra = "drop" # 4th value or more will be dropped
+)
 ```
 
 Gather references and sort on `taxonID`:
 
 ```{r}
 literature_references %<>% 
-  gather(key, value, reference_1, reference_2, na.rm = TRUE) %>% 
+  gather(key, value, starts_with("reference_"), na.rm = TRUE) %>% 
   arrange(input_taxon_id)
 ```
 
@@ -364,6 +369,12 @@ Remove the original columns:
 
 ```{r}
 literature_references %<>% select(-starts_with("input_"), -key, -value)
+```
+
+Remove duplicates (same reference for same taxon):
+
+```{r}
+literature_references %<>% distinct()
 ```
 
 Preview data:
