@@ -553,6 +553,12 @@ Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 species_profile <- input_data %>% distinct(input_taxon_id, .keep_all = TRUE)
 ```
 
+Only keep records for which the `input_realm` is not empty:
+
+```{r}
+species_profile %<>% filter(!is.na(input_realm))
+```
+
 Inspect values:
 
 ```{r}
@@ -577,7 +583,6 @@ species_profile %<>% mutate(taxonID = input_taxon_id)
 species_profile %<>% mutate(isMarine = case_when(
   input_realm == "freshwater | marine" ~ "TRUE",
   input_realm == "estuarine" ~ "TRUE",
-  is.na(input_realm) ~ "",
   TRUE ~ "FALSE"
 )) 
 ```
@@ -590,7 +595,6 @@ species_profile %<>% mutate(isFreshwater = case_when(
   input_realm == "freshwater | marine" ~ "TRUE",
   input_realm == "terrestrial | freshwater" ~ "TRUE",
   input_realm == "estuarine" ~ "TRUE",
-  is.na(input_realm) ~ "",
   TRUE ~ "FALSE"
 )) 
 ```
@@ -601,7 +605,6 @@ species_profile %<>% mutate(isFreshwater = case_when(
 species_profile %<>% mutate(isTerrestrial = case_when(
   input_realm == "terrestrial" ~ "TRUE",
   input_realm == "terrestrial | freshwater" ~ "TRUE",
-  is.na(input_realm) ~ "",
   TRUE ~ "FALSE"
 ))
 ```
