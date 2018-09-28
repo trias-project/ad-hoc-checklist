@@ -43,14 +43,14 @@ The original spreadsheet can be found [here](https://docs.google.com/spreadsheet
 
 Retrieve the spreadsheet:
 
-```{r read_source_data}
+```{r connect_google_spreadsheets}
 retrieve_spreadsheet <- gs_title("ad hoc checklist")
 ```
 
 Select the data in the worksheet `checklist`:
 
-```{r}
-input_data <- retrieve_spreadsheet %>% gs_read("checklist")
+```{r read_source_data}
+input_data <- retrieve_spreadsheet %>% gs_read("checklist") # Also trims values
 ```
 
 We want to add a copy of the source data to the repository:
@@ -327,19 +327,18 @@ Separate values on `|` in a maximum of 3 columns:
 
 ```{r}
 literature_references %<>% separate(
-  input_source, 
-  into = c(paste("reference", c(1,2,3), sep = "_")), # New column name
+  input_source,
+  into = paste0("reference_", c(1:3)),
   sep = " \\| ",
-  extra = "drop" # 4th value or more will be dropped
+  extra = "drop"
 )
 ```
 
-Gather references and sort on `taxonID`:
+Gather and trim values:
 
 ```{r}
-literature_references %<>% 
-  gather(key, value, starts_with("reference_"), na.rm = TRUE) %>% 
-  arrange(input_taxon_id)
+literature_references %<>% gather(key, value, starts_with("reference_"), na.rm = TRUE) %>%
+  mutate(value = str_trim(value))
 ```
 
 ## Term mapping
@@ -370,6 +369,12 @@ Remove duplicates (same reference for same taxon):
 
 ```{r}
 literature_references %<>% distinct()
+```
+
+Sort on `taxonID`:
+
+```{r}
+literature_references %<>% arrange(taxonID)
 ```
 
 Preview data:
@@ -510,7 +515,7 @@ distribution %<>% mutate(eventDate = paste(start_date, end_date, sep = "/"))
 
 ### source
 
-Use the `input_source` field as is. Its content should be ` | ` separated for more than one reference.
+Use the `input_source` field as is. Its content is expected to be concatenated with ` | ` for more than one reference.
 
 ```{r}
 distribution %<>% mutate(source = input_source) 
@@ -667,19 +672,22 @@ Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 native_range <- input_data %>% distinct(input_taxon_id, .keep_all = TRUE)
 ```
 
-Separate values on `|` in 3 columns:
+Separate values on `|` in a maximum of 3 columns:
 
 ```{r}
-native_range %<>% separate(input_native_range, 
-  into = paste0("range", c(1:3)),
-  sep = " \\| ", 
-  remove = FALSE)
+native_range %<>% separate(
+  input_native_range,
+  into = paste0("range_", c(1:3)),
+  sep = " \\| ",
+  extra = "drop"
+)
 ```
 
-Gather on `key` and `value`:
+Gather and trim values:
 
 ```{r}
-native_range %<>% gather(key, value, paste0("range", c(1:3)), na.rm = TRUE)
+native_range %<>% gather(key, value, starts_with("range_"), na.rm = TRUE) %>%
+  mutate(value = str_trim(value))
 ```
 
 Inspect values:
@@ -694,9 +702,8 @@ Clean native range information in `value` somewhat:
 
 ```{r}
 native_range %<>% 
-  mutate(value = str_replace_all(value, "\\?", "")) %>%  # Remove question 
-  mutate(value = str_trim(value)) %>%  # Remove whitespaces
-  mutate(value = str_to_title(value)) 
+  mutate(value = str_replace_all(value, "\\?", "")) %>%  # Remove question
+  mutate(value = str_to_title(value))
 ```
 
 Map values:
@@ -766,22 +773,22 @@ Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 pathway_desc <- input_data %>% distinct(input_taxon_id, .keep_all = TRUE)
 ```
 
-Separate values on `|` in 2 columns:
+Separate values on `|` in a maximum of 2 columns:
 
 ```{r}
-pathway_desc %<>% separate(input_introduction_pathway, 
-    into = c(paste("pathway", c(1,2), sep = "_")),
-    sep = " \\| ")
+pathway_desc %<>% separate(
+  input_introduction_pathway,
+  into = paste0("range_", c(1:2)),
+  sep = " \\| ",
+  extra = "drop"
+)
 ```
 
-Gather on `key` and `value`:
+Gather and trim values:
 
 ```{r}
-pathway_desc %<>% gather(
-  key, value,
-  pathway_1, pathway_2,
-  na.rm = TRUE, # Also removes records for which there is no pathway_1
-  convert = FALSE)
+pathway_desc %<>% gather(key, value, starts_with("range_"), na.rm = TRUE) %>%
+  mutate(value = str_trim(value))
 ```
 
 Inspect values:
