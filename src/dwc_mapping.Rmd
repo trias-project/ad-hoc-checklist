@@ -351,6 +351,14 @@ Map the data to [Literature References](http://rs.gbif.org/extension/gbif/1.0/re
 literature_references %<>% mutate(taxonID = input_taxon_id)
 ```
 
+### identifier
+
+Extract the URL from reference using regex:
+
+```{r}
+literature_references %<>% mutate(identifier = str_extract(value, "http\\S+"))
+```
+
 ### bibliographicCitation
 
 ```{r}
