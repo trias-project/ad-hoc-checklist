@@ -299,6 +299,12 @@ Remove the original columns:
 taxon %<>% select(-starts_with("input_"))
 ```
 
+Sort on `taxonID` (to maintain some consistency between updates of the dataset):
+
+```{r}
+taxon %<>% arrange(taxonID)
+```
+
 Preview data:
 
 ```{r}
