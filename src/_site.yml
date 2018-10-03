@@ -1,6 +1,6 @@
 name: "Ad hoc checklist of alien species in Belgium"
 output_dir: "../docs"
-include: ["static/"]
+include: "static"
 navbar:
   title: "ad-hoc-checklist"
   left:
