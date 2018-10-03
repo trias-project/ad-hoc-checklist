@@ -10,8 +10,8 @@ This repository contains the functionality to standardize the _Ad hoc checklist 
 
 ## Published dataset
 
-* [Dataset on the IPT]()
-* [Dataset on GBIF]()
+* [Dataset on the IPT](https://ipt.inbo.be/resource?r=ad-hoc-checklist)
+* [Dataset on GBIF](https://doi.org/10.15468/3pmlxs)
 
 ## Repo structure
 
