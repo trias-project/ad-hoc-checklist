@@ -24,7 +24,9 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -93,6 +95,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -209,7 +214,6 @@ $(document).ready(function () {
 <h1>Ad hoc checklist of alien species in Belgium</h1>
 <div id="rationale" class="section level2">
 <h2>Rationale</h2>
-<!-- This section gives a quick description of what this repository is for. At least update the "... the data of (blank) ..." or edit as you see fit. -->
 <p>This repository contains the functionality to standardize the <em>Ad hoc checklist of alien species in Belgium</em> (a list of alien species that are not yet included in authorative checklists) to a <a href="https://www.gbif.org/dataset-classes">Darwin Core checklist</a> that can be harvested by <a href="http://www.gbif.org">GBIF</a>.</p>
 </div>
 <div id="workflow" class="section level2">
@@ -239,7 +243,7 @@ $(document).ready(function () {
 │
 └── src
     ├── dwc_mapping.Rmd    : Darwin Core mapping script, core functionality of this repository
-    ├── _site.yml          : Settings to build website in /docs
+    ├── _site.yml          : Settings to build website in docs/
     └── index.Rmd          : Template for website homepage</code></pre>
 </div>
 <div id="installation" class="section level2">
@@ -250,7 +254,7 @@ $(document).ready(function () {
 <li>Open the <code>dwc_mapping.Rmd</code> <a href="https://rmarkdown.rstudio.com/">R Markdown file</a> in RStudio</li>
 <li>Install any required packages</li>
 <li>Click <code>Run &gt; Run All</code> to generate the processed data</li>
-<li>Alternatively, click <code>Build &gt; Build website</code> to generate the processed data and build the website in <code>/docs</code> (advanced)</li>
+<li>Alternatively, click <code>Build &gt; Build website</code> to generate the processed data and build the website in <code>docs/</code></li>
 </ol>
 </div>
 <div id="contributors" class="section level2">
