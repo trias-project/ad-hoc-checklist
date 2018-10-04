@@ -14,7 +14,7 @@
 <meta name="author" content="Quentin Groom" />
 <meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2018-10-03" />
+<meta name="date" content="2018-10-04" />
 
 <title>Darwin Core mapping</title>
 
@@ -315,7 +315,7 @@ div.tocify {
 <h4 class="author"><em>Peter Desmet</em></h4>
 <h4 class="author"><em>Quentin Groom</em></h4>
 <h4 class="author"><em>Tim Adriaens</em></h4>
-<h4 class="date"><em>2018-10-03</em></h4>
+<h4 class="date"><em>2018-10-04</em></h4>
 
 </div>
 
@@ -324,12 +324,11 @@ div.tocify {
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">1</span> Setup</h1>
 <p>Load libraries:</p>
-<pre class="r"><code>library(tidyverse)      # To transform data
+<pre class="r"><code>library(tidyverse)      # To do data science
 library(magrittr)       # To use %&lt;&gt;% pipes
 library(here)           # To find files
 library(janitor)        # To clean input data
 library(googlesheets)   # To import and read Google spreadsheets 
-library(stringr)        # To perform string operations
 library(digest)         # To generate hashes
 library(rgbif)          # To use GBIF services</code></pre>
 </div>
@@ -341,7 +340,7 @@ library(rgbif)          # To use GBIF services</code></pre>
 <p>Select the data in the worksheet <code>checklist</code>:</p>
 <pre class="r"><code>input_data &lt;- retrieve_spreadsheet %&gt;% gs_read(&quot;checklist&quot;) # Also trims values</code></pre>
 <p>We want to add a copy of the source data to the repository:</p>
-<pre class="r"><code>write.csv(input_data, file = here(&quot;data&quot;, &quot;raw&quot;, &quot;ad_hoc_checklist_dump.csv&quot;), na = &quot;&quot;, row.names = FALSE, fileEncoding = &quot;UTF-8&quot;)</code></pre>
+<pre class="r"><code>write_csv(input_data, here(&quot;data&quot;, &quot;raw&quot;, &quot;ad_hoc_checklist_dump.csv&quot;), na = &quot;&quot;)</code></pre>
 <p>Preview data:</p>
 <pre class="r"><code>input_data %&gt;% head()</code></pre>
 <div data-pagedtable="false">
@@ -549,7 +548,7 @@ input_data %&lt;&gt;% mutate(input_taxon_id = paste(
   </script>
 </div>
 <p>Save to CSV:</p>
-<pre class="r"><code>write.csv(taxon, file = here(&quot;data&quot;, &quot;processed&quot;, &quot;taxon.csv&quot;), na = &quot;&quot;, row.names = FALSE, fileEncoding = &quot;UTF-8&quot;)</code></pre>
+<pre class="r"><code>write_csv(taxon, here(&quot;data&quot;, &quot;processed&quot;, &quot;taxon.csv&quot;), na = &quot;&quot;)</code></pre>
 </div>
 </div>
 <div id="literature-references-extension" class="section level1">
@@ -603,7 +602,7 @@ input_data %&lt;&gt;% mutate(input_taxon_id = paste(
   </script>
 </div>
 <p>Save to CSV:</p>
-<pre class="r"><code>write.csv(literature_references, file = here(&quot;data&quot;, &quot;processed&quot;, &quot;references.csv&quot;), na = &quot;&quot;, row.names = FALSE, fileEncoding = &quot;UTF-8&quot;)</code></pre>
+<pre class="r"><code>write_csv(literature_references, here(&quot;data&quot;, &quot;processed&quot;, &quot;references.csv&quot;), na = &quot;&quot;)</code></pre>
 </div>
 </div>
 <div id="distribution-extension" class="section level1">
@@ -719,7 +718,7 @@ input_data %&lt;&gt;% mutate(input_taxon_id = paste(
   </script>
 </div>
 <p>Save to CSV:</p>
-<pre class="r"><code>write.csv(distribution, file = here(&quot;data&quot;, &quot;processed&quot;, &quot;distribution.csv&quot;), na = &quot;&quot;, row.names = FALSE, fileEncoding = &quot;UTF-8&quot;)</code></pre>
+<pre class="r"><code>write_csv(distribution, here(&quot;data&quot;, &quot;processed&quot;, &quot;distribution.csv&quot;), na = &quot;&quot;)</code></pre>
 </div>
 </div>
 <div id="species-profile-extension" class="section level1">
@@ -799,7 +798,7 @@ input_data %&lt;&gt;% mutate(input_taxon_id = paste(
   </script>
 </div>
 <p>Save to CSV:</p>
-<pre class="r"><code>write.csv(species_profile, file = here(&quot;data&quot;, &quot;processed&quot;, &quot;speciesprofile.csv&quot;), na = &quot;&quot;, row.names = FALSE, fileEncoding = &quot;UTF-8&quot;)</code></pre>
+<pre class="r"><code>write_csv(species_profile, here(&quot;data&quot;, &quot;processed&quot;, &quot;speciesprofile.csv&quot;), na = &quot;&quot;)</code></pre>
 </div>
 </div>
 <div id="description-extension" class="section level1">
@@ -1013,7 +1012,7 @@ input_data %&lt;&gt;% mutate(input_taxon_id = paste(
   </script>
 </div>
 <p>Save to CSV:</p>
-<pre class="r"><code>write.csv(description_ext, file = here(&quot;data&quot;, &quot;processed&quot;, &quot;description.csv&quot;), na = &quot;&quot;, row.names = FALSE, fileEncoding = &quot;UTF-8&quot;)</code></pre>
+<pre class="r"><code>write_csv(description_ext, here(&quot;data&quot;, &quot;processed&quot;, &quot;description.csv&quot;), na = &quot;&quot;)</code></pre>
 </div>
 </div>
 

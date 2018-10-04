@@ -55,7 +55,7 @@ input_data <- retrieve_spreadsheet %>% gs_read("checklist") # Also trims values
 We want to add a copy of the source data to the repository:
 
 ```{r}
-write.csv(input_data, file = here("data", "raw", "ad_hoc_checklist_dump.csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write_csv(input_data, here("data", "raw", "ad_hoc_checklist_dump.csv"), na = "")
 ```
 
 Preview data: 
@@ -313,7 +313,7 @@ taxon %>% head()
 Save to CSV:
 
 ```{r}
-write.csv(taxon, file = here("data", "processed", "taxon.csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write_csv(taxon, here("data", "processed", "taxon.csv"), na = "")
 ```
 
 # Literature references extension
@@ -399,7 +399,7 @@ literature_references %>% head()
 Save to CSV:
 
 ```{r}
-write.csv(literature_references, file = here("data", "processed", "references.csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write_csv(literature_references, here("data", "processed", "references.csv"), na = "")
 ```
 
 # Distribution extension
@@ -557,7 +557,7 @@ distribution %>% head()
 Save to CSV:
 
 ```{r}
-write.csv(distribution, file = here("data", "processed", "distribution.csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write_csv(distribution, here("data", "processed", "distribution.csv"), na = "")
 ```
 
 # Species profile extension
@@ -660,7 +660,7 @@ species_profile %>% head()
 Save to CSV:
 
 ```{r}
-write.csv(species_profile, file = here("data", "processed", "speciesprofile.csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write_csv(species_profile, here("data", "processed", "speciesprofile.csv"), na = "")
 ```
 
 # Description extension
@@ -976,5 +976,5 @@ description_ext %>% head(10)
 Save to CSV:
 
 ```{r}
-write.csv(description_ext, file = here("data", "processed", "description.csv"), na = "", row.names = FALSE, fileEncoding = "UTF-8")
+write_csv(description_ext, here("data", "processed", "description.csv"), na = "")
 ```
