@@ -20,19 +20,18 @@ This document describes how we map the checklist data to Darwin Core. The source
 
 # Setup
 
-```{r setup, echo = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
 Load libraries:
 
 ```{r}
-library(tidyverse)      # To transform data
+library(tidyverse)      # To do data science
 library(magrittr)       # To use %<>% pipes
 library(here)           # To find files
 library(janitor)        # To clean input data
 library(googlesheets)   # To import and read Google spreadsheets 
-library(stringr)        # To perform string operations
 library(digest)         # To generate hashes
 library(rgbif)          # To use GBIF services
 ```
