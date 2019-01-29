@@ -6,7 +6,7 @@ This repository contains the functionality to standardize the _Ad hoc checklist 
 
 ## Workflow
 
-[source data](data/raw) (maintained as a [Google Spreadsheet](https://docs.google.com/spreadsheets/d/1LeXXbry2ArK2rngsmFjz_xErwE1KwQ8ujtvHNmTVA6E/edit#gid=0)) → Darwin Core [mapping script](src/dwc_mapping.Rmd) → generated [Darwin Core files](data/processed)
+[source data](https://github.com/trias-project/ad-hoc-checklist/blob/master/data/raw) (maintained as a [Google Spreadsheet](https://docs.google.com/spreadsheets/d/1LeXXbry2ArK2rngsmFjz_xErwE1KwQ8ujtvHNmTVA6E/edit#gid=0)) → Darwin Core [mapping script](https://trias-project.github.io/ad-hoc-checklist/dwc_mapping.html) → generated [Darwin Core files](https://github.com/trias-project/ad-hoc-checklist/blob/master/data/processed)
 
 ## Published dataset
 
