@@ -50,4 +50,4 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 
 ## License
 
-[MIT License](LICENSE)
+[MIT License](https://github.com/trias-project/ad-hoc-checklist/blob/master/LICENSE)
