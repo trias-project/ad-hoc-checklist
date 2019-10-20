@@ -298,7 +298,6 @@ Drop the `dwc_` prefix:
 colnames(taxon) <- str_remove(colnames(taxon), "dwc_")
 ```
 
-
 Sort on `taxonID` (to maintain some consistency between updates of the dataset):
 
 ```{r}
