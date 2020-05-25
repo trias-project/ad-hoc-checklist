@@ -18,8 +18,6 @@ output:
 
 This document describes how we map the checklist data to Darwin Core. The source file for this document can be found [here](https://github.com/trias-project/ad-hoc-checklist/blob/master/src/dwc_mapping.Rmd).
 
-# Setup
-
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
@@ -31,28 +29,20 @@ library(tidyverse)      # To do data science
 library(magrittr)       # To use %<>% pipes
 library(here)           # To find files
 library(janitor)        # To clean input data
-library(googlesheets)   # To import and read Google spreadsheets 
 library(digest)         # To generate hashes
-library(rgbif)          # To use GBIF services
 ```
 
 # Read source data
 
-The original spreadsheet can be found [here](https://docs.google.com/spreadsheets/d/1LeXXbry2ArK2rngsmFjz_xErwE1KwQ8ujtvHNmTVA6E/edit#gid=0). We need to retrieve this spreadsheet and select the specific worksheet first:
+The data is maintained in [this Google Spreadsheet](https://docs.google.com/spreadsheets/d/1LeXXbry2ArK2rngsmFjz_xErwE1KwQ8ujtvHNmTVA6E/edit#gid=0).
 
-Retrieve the spreadsheet:
-
-```{r connect_google_spreadsheets}
-retrieve_spreadsheet <- gs_title("ad hoc checklist")
-```
-
-Select the data in the worksheet `checklist`:
+Read the relevant worksheet (published as csv):
 
 ```{r read_source_data}
-input_data <- retrieve_spreadsheet %>% gs_read("checklist") # Also trims values
+input_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTl8IEk2fProQorMu5xKQPdMXl3OQp-c0f6eBXitv0BiVFZ3JSJCde0PtbFXuETgguf6vK8b43FDX1C/pub?gid=0&single=true&output=csv")
 ```
 
-We want to add a copy of the source data to the repository:
+Copy the source data to the repository to keep track of changes:
 
 ```{r}
 write_csv(input_data, here("data", "raw", "ad_hoc_checklist_dump.csv"), na = "")
@@ -64,7 +54,7 @@ Preview data:
 input_data %>% head()
 ```
 
-# Process source data
+# Preprocessing
 
 ## Tidy data
 
@@ -114,17 +104,15 @@ Preview data:
 input_data %>% head()
 ```
 
-# Taxon core
+# Darwin Core mapping
 
-## Pre-processing
+## Create taxon core
 
 Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 
 ```{r start_taxon}
 taxon <- input_data %>% distinct(taxon_id, .keep_all = TRUE)
 ```
-
-## Term mapping
 
 Map the data to [Darwin Core Taxon](http://rs.gbif.org/core/dwc_taxon_2015-04-24.xml).
  
@@ -284,43 +272,9 @@ taxon %<>% mutate(dwc_taxonRank = taxon_rank)
 taxon %<>% mutate(dwc_nomenclaturalCode = nomenclatural_code)
 ```
 
-## Post-processing
-
-Only keep the Darwin Core columns:
-
-```{r}
-taxon %<>% select(starts_with("dwc_"))
-```
-
-Drop the `dwc_` prefix:
-
-```{r}
-colnames(taxon) <- str_remove(colnames(taxon), "dwc_")
-```
-
-Sort on `taxonID` (to maintain some consistency between updates of the dataset):
-
-```{r}
-taxon %<>% arrange(taxonID)
-```
-
-Preview data:
-
-```{r}
-taxon %>% head()
-```
-
-Save to CSV:
-
-```{r}
-write_csv(taxon, here("data", "processed", "taxon.csv"), na = "")
-```
-
-# Literature references extension
+## Create literature references extension
 
 In this extension we will express references from `source`, separated and gathered.
-
-## Pre-processing
 
 Create a dataframe with all data (including multiple distributions), to capture potentially different `source` for different distributions of the same taxa:
 
@@ -346,8 +300,6 @@ literature_references %<>% gather(key, value, starts_with("reference_"), na.rm =
   mutate(value = str_trim(value))
 ```
 
-## Term mapping
-
 Map the data to [Literature References](http://rs.gbif.org/extension/gbif/1.0/references.xml).
 
 ### taxonID
@@ -370,55 +322,13 @@ literature_references %<>% mutate(dwc_identifier = str_extract(value, "http\\S+"
 literature_references %<>% mutate(dwc_bibliographicCitation = value) 
 ```
 
-## Post-processing
-
-Only keep the Darwin Core columns:
-
-```{r}
-literature_references %<>% select(starts_with("dwc_"))
-```
-
-Drop the `dwc_` prefix:
-
-```{r}
-colnames(literature_references) <- str_remove(colnames(literature_references), "dwc_")
-```
-
-Remove duplicates (same reference for same taxon):
-
-```{r}
-literature_references %<>% distinct()
-```
-
-Sort on `taxonID`:
-
-```{r}
-literature_references %<>% arrange(taxonID)
-```
-
-Preview data:
-
-```{r}
-literature_references %>% head()
-```
-
-Save to CSV:
-
-```{r}
-write_csv(literature_references, here("data", "processed", "references.csv"), na = "")
-```
-
-# Distribution extension
-
-## Pre-processing
+## Create distribution extension
 
 Create a dataframe with all data (including multiple distributions):
 
 ```{r}
 distribution <- input_data
 ```
-
-## Term mapping 
 
 Map the data to [Species Distribution](http://rs.gbif.org/extension/gbif/1.0/distribution.xml).
 
@@ -540,43 +450,9 @@ Use the `source` field as is. Its content is expected to be concatenated with ` 
 distribution %<>% mutate(dwc_source = source) 
 ```
 
-## Post-processing
-
-Only keep the Darwin Core columns:
-
-```{r}
-distribution %<>% select(starts_with("dwc_"))
-```
-
-Drop the `dwc_` prefix:
-
-```{r}
-colnames(distribution) <- str_remove(colnames(distribution), "dwc_")
-```
-
-Sort on `taxonID`:
-
-```{r}
-distribution %<>% arrange(taxonID)
-```
-
-Preview data:
-
-```{r}
-distribution %>% head()
-```
-
-Save to CSV:
-
-```{r}
-write_csv(distribution, here("data", "processed", "distribution.csv"), na = "")
-```
-
-# Species profile extension
+## Create species profile extension
 
 In this extension we will express broad habitat characteristics of the species (e.g. `isTerrestrial`) from `realm`.
-
-## Pre-processing
 
 Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 
@@ -597,8 +473,6 @@ species_profile %>%
   group_by(realm) %>%
   count()
 ```
-
-## Term mapping
 
 Map the data to [Species Profile](http://rs.gbif.org/extension/gbif/1.0/speciesprofile.xml).
 
@@ -649,39 +523,7 @@ species_profile %>%
   summarize(records = n())
 ```
 
-## Post-processing
-
-Only keep the Darwin Core columns:
-
-```{r}
-species_profile %<>% select(starts_with("dwc_"))
-```
-
-Drop the `dwc_` prefix:
-
-```{r}
-colnames(species_profile) <- str_remove(colnames(species_profile), "dwc_")
-```
-
-Sort on `taxonID`:
-
-```{r}
-species_profile %<>% arrange(taxonID)
-```
-
-Preview data:
-
-```{r}
-species_profile %>% head()
-```
-
-Save to CSV:
-
-```{r}
-write_csv(species_profile, here("data", "processed", "speciesprofile.csv"), na = "")
-```
-
-# Description extension
+## Create description extension
 
 In the description extension we want to include several important characteristics (hereafter referred to as descriptors) about the species:
 
@@ -693,7 +535,7 @@ The structure of the description extension is slightly different from the other 
 
 For each descriptor, we create a separate dataframe to process the specific information. We always specify _which descriptor_ we map (`type` column) and its _specific content_ (`description` column). After the mapping of these Darwin Core terms `type` and `value`, we merge the dataframes to generate one single description extension. We then continue the mapping process by adding the other Darwin Core terms (which content is independent of the type of descriptor, such as `language`).
 
-## Native range
+#### Native range
 
 We will express native range information from `native_range`, separated and gathered.
 
@@ -794,7 +636,7 @@ Create a `type` field to indicate the type of description:
 native_range %<>% mutate(type = "native range")
 ```
 
-## Pathway of introduction
+#### Pathway of introduction
 
 We will express pathway information (e.g. `aquaculture`) from `introduction_pathway`, separated and gathered.
 
@@ -874,7 +716,7 @@ Keep only non-empty descriptions:
 pathway_desc %<>% filter(!is.na(description) & description != "")
 ```
 
-## Invasion stage
+#### Invasion stage
 
 We will express invasion stage from `degree_of_establishment`.
 
@@ -929,15 +771,13 @@ Create a `type` field to indicate the type of description:
 invasion_stage %<>% mutate(type = "invasion stage")
 ```
 
-## Union descriptions
+#### Union descriptions
 
 Union native range, pathway of introduction and invasion stage:
 
 ```{r start_description_ext}
 description_ext <- bind_rows(native_range, pathway_desc, invasion_stage)
 ```
-
-## Term mapping
 
 Map the data to [Taxon Description](http://rs.gbif.org/extension/gbif/1.0/description.xml).
 
@@ -965,33 +805,75 @@ description_ext %<>% mutate(dwc_type = type)
 description_ext %<>% mutate(dwc_language = "en")
 ```
 
-## Post-processing
+# Post-processing
 
 Only keep the Darwin Core columns:
 
 ```{r}
+taxon %<>% select(starts_with("dwc_"))
+literature_references %<>% select(starts_with("dwc_"))
+distribution %<>% select(starts_with("dwc_"))
+species_profile %<>% select(starts_with("dwc_"))
 description_ext %<>% select(starts_with("dwc_"))
 ```
 
 Drop the `dwc_` prefix:
 
 ```{r}
+colnames(taxon) <- str_remove(colnames(taxon), "dwc_")
+colnames(literature_references) <- str_remove(colnames(literature_references), "dwc_")
+colnames(distribution) <- str_remove(colnames(distribution), "dwc_")
+colnames(species_profile) <- str_remove(colnames(species_profile), "dwc_")
 colnames(description_ext) <- str_remove(colnames(description_ext), "dwc_")
 ```
 
-Move `taxonID` to the first position:
+Remove duplicates (same reference for same taxon) in the literature references extension:
+
+```{r}
+literature_references %<>% distinct()
+```
+
+Move `taxonID` to the first position in the description extension:
 
 ```{r}
 description_ext %<>% select(taxonID, everything())
 ```
 
-Sort on `taxonID` to group description information per taxon:
+Sort on `taxonID` (to maintain some consistency between updates of the dataset):
 
 ```{r}
+taxon %<>% arrange(taxonID)
+literature_references %<>% arrange(taxonID)
+distribution %<>% arrange(taxonID)
+species_profile %<>% arrange(taxonID)
 description_ext %<>% arrange(taxonID)
 ```
 
-Preview data:
+Preview taxon core:
+
+```{r}
+taxon %>% head()
+```
+
+Preview literature references extension:
+
+```{r}
+literature_references %>% head()
+```
+
+Preview distribution extension:
+
+```{r}
+distribution %>% head()
+```
+
+Preview species profile extension:
+
+```{r}
+species_profile %>% head()
+```
+
+Preview description extension:
 
 ```{r}
 description_ext %>% head(10)
@@ -1000,5 +882,9 @@ description_ext %>% head(10)
 Save to CSV:
 
 ```{r}
+write_csv(taxon, here("data", "processed", "taxon.csv"), na = "")
+write_csv(literature_references, here("data", "processed", "references.csv"), na = "")
+write_csv(distribution, here("data", "processed", "distribution.csv"), na = "")
+write_csv(species_profile, here("data", "processed", "speciesprofile.csv"), na = "")
 write_csv(description_ext, here("data", "processed", "description.csv"), na = "")
 ```
