@@ -871,19 +871,19 @@ input_data %&lt;&gt;% mutate(taxon_id = paste(
 <h3><span class="header-section-number">3.5.2</span> Pathway of introduction</h3>
 <p>We will express pathway information (e.g. <code>aquaculture</code>) from <code>introduction_pathway</code>, separated and gathered.</p>
 <p>Create a dataframe with unique taxa only (ignoring multiple distribution rows):</p>
-<pre class="r"><code>pathway_desc &lt;- input_data %&gt;% distinct(taxon_id, .keep_all = TRUE)</code></pre>
+<pre class="r"><code>pathway &lt;- input_data %&gt;% distinct(taxon_id, .keep_all = TRUE)</code></pre>
 <p>Separate values on <code>|</code> in a maximum of 2 columns:</p>
-<pre class="r"><code>pathway_desc %&lt;&gt;% separate(
+<pre class="r"><code>pathway %&lt;&gt;% separate(
   introduction_pathway,
   into = paste0(&quot;range_&quot;, c(1:2)),
   sep = &quot; \\| &quot;,
   extra = &quot;drop&quot;
 )</code></pre>
 <p>Gather and trim values:</p>
-<pre class="r"><code>pathway_desc %&lt;&gt;% gather(key, value, starts_with(&quot;range_&quot;), na.rm = TRUE) %&gt;%
+<pre class="r"><code>pathway %&lt;&gt;% gather(key, value, starts_with(&quot;range_&quot;), na.rm = TRUE) %&gt;%
   mutate(value = str_trim(value))</code></pre>
 <p>Inspect values:</p>
-<pre class="r"><code>pathway_desc %&gt;%
+<pre class="r"><code>pathway %&gt;%
   distinct(value) %&gt;%
   arrange(value) </code></pre>
 <div data-pagedtable="false">
@@ -893,13 +893,13 @@ input_data %&lt;&gt;% mutate(taxon_id = paste(
 </div>
 <p>We use the <a href="https://www.cbd.int/doc/meetings/sbstta/sbstta-18/official/sbstta-18-09-add1-en.pdf">CBD 2014 pathway vocabulary</a> to standardize this information. The vocubulary has <a href="https://github.com/trias-project/vocab/tree/master/vocabulary/pathway">these values</a>.</p>
 <p>The values in this checklist should already match to the CBD standard, but we’ll do a regex match for lowercase and underscore strings as a check and prefix <code>cbd_2014_pathway</code> for those only:</p>
-<pre class="r"><code>pathway_desc %&lt;&gt;% mutate(mapped_value = case_when(
+<pre class="r"><code>pathway %&lt;&gt;% mutate(mapped_value = case_when(
   str_detect(value, &quot;^[a-z_]+$&quot;) ~ paste(&quot;cbd_2014_pathway&quot;, value, sep = &quot;:&quot;),
   is.na(value) ~ &quot;&quot;,
   TRUE ~ &quot;&quot;
 ))</code></pre>
 <p>Inspect mapped values:</p>
-<pre class="r"><code>pathway_desc %&gt;%
+<pre class="r"><code>pathway %&gt;%
   group_by(value, mapped_value) %&gt;%
   count()</code></pre>
 <div data-pagedtable="false">
@@ -908,21 +908,20 @@ input_data %&lt;&gt;% mutate(taxon_id = paste(
   </script>
 </div>
 <p>Drop <code>key</code> and <code>value</code> column:</p>
-<pre class="r"><code>pathway_desc %&lt;&gt;% select(-key, -value)</code></pre>
+<pre class="r"><code>pathway %&lt;&gt;% select(-key, -value)</code></pre>
 <p>Change column name <code>mapped_value</code> to <code>description</code>:</p>
-<pre class="r"><code>pathway_desc %&lt;&gt;%  rename(description = mapped_value)</code></pre>
+<pre class="r"><code>pathway %&lt;&gt;%  rename(description = mapped_value)</code></pre>
 <p>Create a <code>type</code> field to indicate the type of description:</p>
-<pre class="r"><code>pathway_desc %&lt;&gt;% mutate (type = &quot;pathway&quot;)</code></pre>
+<pre class="r"><code>pathway %&lt;&gt;% mutate (type = &quot;pathway&quot;)</code></pre>
 <p>Keep only non-empty descriptions:</p>
-<pre class="r"><code>pathway_desc %&lt;&gt;% filter(!is.na(description) &amp; description != &quot;&quot;)</code></pre>
+<pre class="r"><code>pathway %&lt;&gt;% filter(!is.na(description) &amp; description != &quot;&quot;)</code></pre>
 </div>
-<div id="invasion-stage" class="section level3">
-<h3><span class="header-section-number">3.5.3</span> Invasion stage</h3>
-<p>We will express invasion stage from <code>degree_of_establishment</code>.</p>
+<div id="degree-of-establishment" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Degree of establishment</h3>
 <p>Create a dataframe with unique taxa only (ignoring multiple distribution rows):</p>
-<pre class="r"><code>invasion_stage &lt;- input_data %&gt;% distinct(taxon_id, .keep_all = TRUE)</code></pre>
+<pre class="r"><code>degree_of_establishment &lt;- input_data %&gt;% distinct(taxon_id, .keep_all = TRUE)</code></pre>
 <p>Inspect values:</p>
-<pre class="r"><code>invasion_stage %&gt;%
+<pre class="r"><code>degree_of_establishment %&gt;%
   group_by(degree_of_establishment) %&gt;%
   count()</code></pre>
 <div data-pagedtable="false">
@@ -932,7 +931,7 @@ input_data %&lt;&gt;% mutate(taxon_id = paste(
 </div>
 <p>Our vocabulary for invasion stage is based on the <a href="http://doc.rero.ch/record/24725/files/bach_puf.pdf">invasion stage vocabulary from Blackburn et al. (2011)</a>. We decided <strong>not</strong> to use the terms <code>naturalized</code> (because often, there’s no sensible criterium to distinguish between casual/naturalized of naturalized/established) and <code>invasive</code> (which is a term that can only be applied after a risk assessment).</p>
 <p>Map data to Blackburn at al. (2011) vocabulary:</p>
-<pre class="r"><code>invasion_stage %&lt;&gt;% mutate(description = case_when(
+<pre class="r"><code>degree_of_establishment %&lt;&gt;% mutate(description = case_when(
   degree_of_establishment == &quot;captive&quot; | 
   degree_of_establishment == &quot;casual&quot; |
   degree_of_establishment == &quot;cultivated&quot; |
@@ -943,9 +942,9 @@ input_data %&lt;&gt;% mutate(taxon_id = paste(
   degree_of_establishment == &quot;invasive&quot; ~ &quot;established&quot;
 ))</code></pre>
 <p>Remove empty values:</p>
-<pre class="r"><code>invasion_stage %&lt;&gt;% filter(!is.na(description))</code></pre>
+<pre class="r"><code>degree_of_establishment %&lt;&gt;% filter(!is.na(description))</code></pre>
 <p>Show mapped values:</p>
-<pre class="r"><code>invasion_stage %&gt;%
+<pre class="r"><code>degree_of_establishment %&gt;%
   group_by(degree_of_establishment, description) %&gt;%
   count()</code></pre>
 <div data-pagedtable="false">
@@ -954,26 +953,26 @@ input_data %&lt;&gt;% mutate(taxon_id = paste(
   </script>
 </div>
 <p>Create a <code>type</code> field to indicate the type of description:</p>
-<pre class="r"><code>invasion_stage %&lt;&gt;% mutate(type = &quot;invasion stage&quot;)</code></pre>
-<p>Union native range, pathway of introduction and invasion stage:</p>
-<pre class="r"><code>description_ext &lt;- bind_rows(native_range, pathway_desc, invasion_stage)</code></pre>
+<pre class="r"><code>degree_of_establishment %&lt;&gt;% mutate(type = &quot;degree of establishment&quot;)</code></pre>
+<p>Union native range, pathway of introduction and degree of establishment into a single description extension:</p>
+<pre class="r"><code>description &lt;- bind_rows(native_range, pathway, degree_of_establishment)</code></pre>
 <p>Map the data to <a href="http://rs.gbif.org/extension/gbif/1.0/description.xml">Taxon Description</a>.</p>
 </div>
 <div id="taxonid-4" class="section level3">
 <h3><span class="header-section-number">3.5.4</span> taxonID</h3>
-<pre class="r"><code>description_ext %&lt;&gt;% mutate(dwc_taxonID = taxon_id)</code></pre>
+<pre class="r"><code>description %&lt;&gt;% mutate(dwc_taxonID = taxon_id)</code></pre>
 </div>
 <div id="description" class="section level3">
 <h3><span class="header-section-number">3.5.5</span> description</h3>
-<pre class="r"><code>description_ext %&lt;&gt;% mutate(dwc_description = description)</code></pre>
+<pre class="r"><code>description %&lt;&gt;% mutate(dwc_description = description)</code></pre>
 </div>
 <div id="type" class="section level3">
 <h3><span class="header-section-number">3.5.6</span> type</h3>
-<pre class="r"><code>description_ext %&lt;&gt;% mutate(dwc_type = type)</code></pre>
+<pre class="r"><code>description %&lt;&gt;% mutate(dwc_type = type)</code></pre>
 </div>
 <div id="language-1" class="section level3">
 <h3><span class="header-section-number">3.5.7</span> language</h3>
-<pre class="r"><code>description_ext %&lt;&gt;% mutate(dwc_language = &quot;en&quot;)</code></pre>
+<pre class="r"><code>description %&lt;&gt;% mutate(dwc_language = &quot;en&quot;)</code></pre>
 </div>
 </div>
 </div>
@@ -984,23 +983,21 @@ input_data %&lt;&gt;% mutate(taxon_id = paste(
 literature_references %&lt;&gt;% select(starts_with(&quot;dwc_&quot;))
 distribution %&lt;&gt;% select(starts_with(&quot;dwc_&quot;))
 species_profile %&lt;&gt;% select(starts_with(&quot;dwc_&quot;))
-description_ext %&lt;&gt;% select(starts_with(&quot;dwc_&quot;))</code></pre>
+description %&lt;&gt;% select(starts_with(&quot;dwc_&quot;))</code></pre>
 <p>Drop the <code>dwc_</code> prefix:</p>
 <pre class="r"><code>colnames(taxon) &lt;- str_remove(colnames(taxon), &quot;dwc_&quot;)
 colnames(literature_references) &lt;- str_remove(colnames(literature_references), &quot;dwc_&quot;)
 colnames(distribution) &lt;- str_remove(colnames(distribution), &quot;dwc_&quot;)
 colnames(species_profile) &lt;- str_remove(colnames(species_profile), &quot;dwc_&quot;)
-colnames(description_ext) &lt;- str_remove(colnames(description_ext), &quot;dwc_&quot;)</code></pre>
+colnames(description) &lt;- str_remove(colnames(description), &quot;dwc_&quot;)</code></pre>
 <p>Remove duplicates (same reference for same taxon) in the literature references extension:</p>
 <pre class="r"><code>literature_references %&lt;&gt;% distinct()</code></pre>
-<p>Move <code>taxonID</code> to the first position in the description extension:</p>
-<pre class="r"><code>description_ext %&lt;&gt;% select(taxonID, everything())</code></pre>
 <p>Sort on <code>taxonID</code> (to maintain some consistency between updates of the dataset):</p>
 <pre class="r"><code>taxon %&lt;&gt;% arrange(taxonID)
 literature_references %&lt;&gt;% arrange(taxonID)
 distribution %&lt;&gt;% arrange(taxonID)
 species_profile %&lt;&gt;% arrange(taxonID)
-description_ext %&lt;&gt;% arrange(taxonID)</code></pre>
+description %&lt;&gt;% arrange(taxonID)</code></pre>
 <p>Preview taxon core:</p>
 <pre class="r"><code>taxon %&gt;% head()</code></pre>
 <div data-pagedtable="false">
@@ -1030,10 +1027,10 @@ description_ext %&lt;&gt;% arrange(taxonID)</code></pre>
   </script>
 </div>
 <p>Preview description extension:</p>
-<pre class="r"><code>description_ext %&gt;% head(10)</code></pre>
+<pre class="r"><code>description %&gt;% head(10)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["taxonID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["description"],"name":[2],"type":["chr"],"align":["left"]},{"label":["type"],"name":[3],"type":["chr"],"align":["left"]},{"label":["language"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"ad-hoc-checklist:taxon:02127ef216ec86a6df37669a0da367e8","2":"introduced","3":"invasion stage","4":"en"},{"1":"ad-hoc-checklist:taxon:0338bf66bffd36ae51953987b1e327cd","2":"established","3":"invasion stage","4":"en"},{"1":"ad-hoc-checklist:taxon:04f0fa33aab56bd2c92b381eeda83b7b","2":"Asia","3":"native range","4":"en"},{"1":"ad-hoc-checklist:taxon:04f0fa33aab56bd2c92b381eeda83b7b","2":"cbd_2014_pathway:release_biological_control","3":"pathway","4":"en"},{"1":"ad-hoc-checklist:taxon:04f0fa33aab56bd2c92b381eeda83b7b","2":"established","3":"invasion stage","4":"en"},{"1":"ad-hoc-checklist:taxon:05fac09d962d4db66a618110aab48f8e","2":"cbd_2014_pathway:contaminant_timber","3":"pathway","4":"en"},{"1":"ad-hoc-checklist:taxon:05fac09d962d4db66a618110aab48f8e","2":"established","3":"invasion stage","4":"en"},{"1":"ad-hoc-checklist:taxon:0bcd26f38390fe99c643104b28217c02","2":"Africa (WGSRPD:2)","3":"native range","4":"en"},{"1":"ad-hoc-checklist:taxon:0bcd26f38390fe99c643104b28217c02","2":"introduced","3":"invasion stage","4":"en"},{"1":"ad-hoc-checklist:taxon:0bd36fa88a3080c7e98593020f71fb91","2":"Southern Asia","3":"native range","4":"en"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["taxonID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["description"],"name":[2],"type":["chr"],"align":["left"]},{"label":["type"],"name":[3],"type":["chr"],"align":["left"]},{"label":["language"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"ad-hoc-checklist:taxon:02127ef216ec86a6df37669a0da367e8","2":"introduced","3":"degree of establishment","4":"en"},{"1":"ad-hoc-checklist:taxon:0338bf66bffd36ae51953987b1e327cd","2":"established","3":"degree of establishment","4":"en"},{"1":"ad-hoc-checklist:taxon:04f0fa33aab56bd2c92b381eeda83b7b","2":"Asia","3":"native range","4":"en"},{"1":"ad-hoc-checklist:taxon:04f0fa33aab56bd2c92b381eeda83b7b","2":"cbd_2014_pathway:release_biological_control","3":"pathway","4":"en"},{"1":"ad-hoc-checklist:taxon:04f0fa33aab56bd2c92b381eeda83b7b","2":"established","3":"degree of establishment","4":"en"},{"1":"ad-hoc-checklist:taxon:05fac09d962d4db66a618110aab48f8e","2":"cbd_2014_pathway:contaminant_timber","3":"pathway","4":"en"},{"1":"ad-hoc-checklist:taxon:05fac09d962d4db66a618110aab48f8e","2":"established","3":"degree of establishment","4":"en"},{"1":"ad-hoc-checklist:taxon:0bcd26f38390fe99c643104b28217c02","2":"Africa (WGSRPD:2)","3":"native range","4":"en"},{"1":"ad-hoc-checklist:taxon:0bcd26f38390fe99c643104b28217c02","2":"introduced","3":"degree of establishment","4":"en"},{"1":"ad-hoc-checklist:taxon:0bd36fa88a3080c7e98593020f71fb91","2":"Southern Asia","3":"native range","4":"en"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Save to CSV:</p>
@@ -1041,7 +1038,7 @@ description_ext %&lt;&gt;% arrange(taxonID)</code></pre>
 write_csv(literature_references, here(&quot;data&quot;, &quot;processed&quot;, &quot;references.csv&quot;), na = &quot;&quot;)
 write_csv(distribution, here(&quot;data&quot;, &quot;processed&quot;, &quot;distribution.csv&quot;), na = &quot;&quot;)
 write_csv(species_profile, here(&quot;data&quot;, &quot;processed&quot;, &quot;speciesprofile.csv&quot;), na = &quot;&quot;)
-write_csv(description_ext, here(&quot;data&quot;, &quot;processed&quot;, &quot;description.csv&quot;), na = &quot;&quot;)</code></pre>
+write_csv(description, here(&quot;data&quot;, &quot;processed&quot;, &quot;description.csv&quot;), na = &quot;&quot;)</code></pre>
 </div>
 
 

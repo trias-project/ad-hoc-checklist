@@ -110,7 +110,7 @@ input_data %>% head()
 
 Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 
-```{r start_taxon}
+```{r}
 taxon <- input_data %>% distinct(taxon_id, .keep_all = TRUE)
 ```
 
@@ -294,7 +294,7 @@ In this extension we will express references from `source`, separated and gather
 
 Create a dataframe with all data (including multiple distributions), to capture potentially different `source` for different distributions of the same taxa:
 
-```{r start_references}
+```{r}
 literature_references <- input_data
 ```
 
@@ -472,7 +472,7 @@ In this extension we will express broad habitat characteristics of the species (
 
 Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 
-```{r start_species_profile}
+```{r}
 species_profile <- input_data %>% distinct(taxon_id, .keep_all = TRUE)
 ```
 
@@ -557,7 +557,7 @@ We will express native range information from `native_range`, separated and gath
 
 Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 
-```{r start_native_range}
+```{r}
 native_range <- input_data %>% distinct(taxon_id, .keep_all = TRUE)
 ```
 
@@ -658,14 +658,14 @@ We will express pathway information (e.g. `aquaculture`) from `introduction_path
 
 Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 
-```{r start_pathway_description}
-pathway_desc <- input_data %>% distinct(taxon_id, .keep_all = TRUE)
+```{r}
+pathway <- input_data %>% distinct(taxon_id, .keep_all = TRUE)
 ```
 
 Separate values on `|` in a maximum of 2 columns:
 
 ```{r}
-pathway_desc %<>% separate(
+pathway %<>% separate(
   introduction_pathway,
   into = paste0("range_", c(1:2)),
   sep = " \\| ",
@@ -676,14 +676,14 @@ pathway_desc %<>% separate(
 Gather and trim values:
 
 ```{r}
-pathway_desc %<>% gather(key, value, starts_with("range_"), na.rm = TRUE) %>%
+pathway %<>% gather(key, value, starts_with("range_"), na.rm = TRUE) %>%
   mutate(value = str_trim(value))
 ```
 
 Inspect values:
 
 ```{r}
-pathway_desc %>%
+pathway %>%
   distinct(value) %>%
   arrange(value) 
 ```
@@ -693,7 +693,7 @@ We use the [CBD 2014 pathway vocabulary](https://www.cbd.int/doc/meetings/sbstta
 The values in this checklist should already match to the CBD standard, but we'll do a regex match for lowercase and underscore strings as a check and prefix `cbd_2014_pathway` for those only:
 
 ```{r}
-pathway_desc %<>% mutate(mapped_value = case_when(
+pathway %<>% mutate(mapped_value = case_when(
   str_detect(value, "^[a-z_]+$") ~ paste("cbd_2014_pathway", value, sep = ":"),
   is.na(value) ~ "",
   TRUE ~ ""
@@ -703,7 +703,7 @@ pathway_desc %<>% mutate(mapped_value = case_when(
 Inspect mapped values:
 
 ```{r}
-pathway_desc %>%
+pathway %>%
   group_by(value, mapped_value) %>%
   count()
 ```
@@ -711,41 +711,39 @@ pathway_desc %>%
 Drop `key` and `value` column:
 
 ```{r}
-pathway_desc %<>% select(-key, -value)
+pathway %<>% select(-key, -value)
 ```
 
 Change column name `mapped_value` to `description`:
 
 ```{r}
-pathway_desc %<>%  rename(description = mapped_value)
+pathway %<>%  rename(description = mapped_value)
 ```
 
 Create a `type` field to indicate the type of description:
 
 ```{r}
-pathway_desc %<>% mutate (type = "pathway")
+pathway %<>% mutate (type = "pathway")
 ```
 
 Keep only non-empty descriptions:
 
 ```{r}
-pathway_desc %<>% filter(!is.na(description) & description != "")
+pathway %<>% filter(!is.na(description) & description != "")
 ```
 
-### Invasion stage
-
-We will express invasion stage from `degree_of_establishment`.
+### Degree of establishment
 
 Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 
-```{r start_invasion_stage}
-invasion_stage <- input_data %>% distinct(taxon_id, .keep_all = TRUE)
+```{r}
+degree_of_establishment <- input_data %>% distinct(taxon_id, .keep_all = TRUE)
 ```
 
 Inspect values:
 
 ```{r}
-invasion_stage %>%
+degree_of_establishment %>%
   group_by(degree_of_establishment) %>%
   count()
 ```
@@ -755,7 +753,7 @@ Our vocabulary for invasion stage is based on the [invasion stage vocabulary fro
 Map data to Blackburn at al. (2011) vocabulary:
 
 ```{r}
-invasion_stage %<>% mutate(description = case_when(
+degree_of_establishment %<>% mutate(description = case_when(
   degree_of_establishment == "captive" | 
   degree_of_establishment == "casual" |
   degree_of_establishment == "cultivated" |
@@ -770,13 +768,13 @@ invasion_stage %<>% mutate(description = case_when(
 Remove empty values:
 
 ```{r}
-invasion_stage %<>% filter(!is.na(description))
+degree_of_establishment %<>% filter(!is.na(description))
 ```
 
 Show mapped values:
 
 ```{r}
-invasion_stage %>%
+degree_of_establishment %>%
   group_by(degree_of_establishment, description) %>%
   count()
 ```
@@ -784,13 +782,13 @@ invasion_stage %>%
 Create a `type` field to indicate the type of description:
 
 ```{r}
-invasion_stage %<>% mutate(type = "invasion stage")
+degree_of_establishment %<>% mutate(type = "degree of establishment")
 ```
 
-Union native range, pathway of introduction and invasion stage:
+Union native range, pathway of introduction and degree of establishment into a single description extension:
 
-```{r start_description_ext}
-description_ext <- bind_rows(native_range, pathway_desc, invasion_stage)
+```{r}
+description <- bind_rows(native_range, pathway, degree_of_establishment)
 ```
 
 Map the data to [Taxon Description](http://rs.gbif.org/extension/gbif/1.0/description.xml).
@@ -798,25 +796,25 @@ Map the data to [Taxon Description](http://rs.gbif.org/extension/gbif/1.0/descri
 ### taxonID
 
 ```{r}
-description_ext %<>% mutate(dwc_taxonID = taxon_id)
+description %<>% mutate(dwc_taxonID = taxon_id)
 ```
 
 ### description
 
 ```{r}
-description_ext %<>% mutate(dwc_description = description)
+description %<>% mutate(dwc_description = description)
 ```
 
 ### type
 
 ```{r}
-description_ext %<>% mutate(dwc_type = type)
+description %<>% mutate(dwc_type = type)
 ```
 
 ### language
 
 ```{r}
-description_ext %<>% mutate(dwc_language = "en")
+description %<>% mutate(dwc_language = "en")
 ```
 
 # Post-processing
@@ -828,7 +826,7 @@ taxon %<>% select(starts_with("dwc_"))
 literature_references %<>% select(starts_with("dwc_"))
 distribution %<>% select(starts_with("dwc_"))
 species_profile %<>% select(starts_with("dwc_"))
-description_ext %<>% select(starts_with("dwc_"))
+description %<>% select(starts_with("dwc_"))
 ```
 
 Drop the `dwc_` prefix:
@@ -838,19 +836,13 @@ colnames(taxon) <- str_remove(colnames(taxon), "dwc_")
 colnames(literature_references) <- str_remove(colnames(literature_references), "dwc_")
 colnames(distribution) <- str_remove(colnames(distribution), "dwc_")
 colnames(species_profile) <- str_remove(colnames(species_profile), "dwc_")
-colnames(description_ext) <- str_remove(colnames(description_ext), "dwc_")
+colnames(description) <- str_remove(colnames(description), "dwc_")
 ```
 
 Remove duplicates (same reference for same taxon) in the literature references extension:
 
 ```{r}
 literature_references %<>% distinct()
-```
-
-Move `taxonID` to the first position in the description extension:
-
-```{r}
-description_ext %<>% select(taxonID, everything())
 ```
 
 Sort on `taxonID` (to maintain some consistency between updates of the dataset):
@@ -860,7 +852,7 @@ taxon %<>% arrange(taxonID)
 literature_references %<>% arrange(taxonID)
 distribution %<>% arrange(taxonID)
 species_profile %<>% arrange(taxonID)
-description_ext %<>% arrange(taxonID)
+description %<>% arrange(taxonID)
 ```
 
 Preview taxon core:
@@ -890,7 +882,7 @@ species_profile %>% head()
 Preview description extension:
 
 ```{r}
-description_ext %>% head(10)
+description %>% head(10)
 ```
 
 Save to CSV:
@@ -900,5 +892,5 @@ write_csv(taxon, here("data", "processed", "taxon.csv"), na = "")
 write_csv(literature_references, here("data", "processed", "references.csv"), na = "")
 write_csv(distribution, here("data", "processed", "distribution.csv"), na = "")
 write_csv(species_profile, here("data", "processed", "speciesprofile.csv"), na = "")
-write_csv(description_ext, here("data", "processed", "description.csv"), na = "")
+write_csv(description, here("data", "processed", "description.csv"), na = "")
 ```
