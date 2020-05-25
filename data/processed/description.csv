@@ -4,6 +4,8 @@ ad-hoc-checklist:taxon:0338bf66bffd36ae51953987b1e327cd,established,invasion sta
 ad-hoc-checklist:taxon:04f0fa33aab56bd2c92b381eeda83b7b,Asia,native range,en
 ad-hoc-checklist:taxon:04f0fa33aab56bd2c92b381eeda83b7b,cbd_2014_pathway:release_biological_control,pathway,en
 ad-hoc-checklist:taxon:04f0fa33aab56bd2c92b381eeda83b7b,established,invasion stage,en
+ad-hoc-checklist:taxon:05fac09d962d4db66a618110aab48f8e,cbd_2014_pathway:contaminant_timber,pathway,en
+ad-hoc-checklist:taxon:05fac09d962d4db66a618110aab48f8e,established,invasion stage,en
 ad-hoc-checklist:taxon:0bcd26f38390fe99c643104b28217c02,Africa (WGSRPD:2),native range,en
 ad-hoc-checklist:taxon:0bcd26f38390fe99c643104b28217c02,introduced,invasion stage,en
 ad-hoc-checklist:taxon:0bd36fa88a3080c7e98593020f71fb91,Southern Asia,native range,en
@@ -16,6 +18,9 @@ ad-hoc-checklist:taxon:0c166dc873f97eab93817203eac24df6,cbd_2014_pathway:agricul
 ad-hoc-checklist:taxon:0c166dc873f97eab93817203eac24df6,introduced,invasion stage,en
 ad-hoc-checklist:taxon:0cf152a392bb98b8dca84f219e8099f5,"Cape Verde Is., Africa, Madagascar, Comoros",native range,en
 ad-hoc-checklist:taxon:0cf152a392bb98b8dca84f219e8099f5,introduced,invasion stage,en
+ad-hoc-checklist:taxon:0e0462e484d3f0bbb46899c33a86728e,Australia,native range,en
+ad-hoc-checklist:taxon:0e0462e484d3f0bbb46899c33a86728e,cbd_2014_pathway:contaminant_nursery,pathway,en
+ad-hoc-checklist:taxon:0e0462e484d3f0bbb46899c33a86728e,introduced,invasion stage,en
 ad-hoc-checklist:taxon:0fe740ff557affb6d9a0ea829cbf68bd,established,invasion stage,en
 ad-hoc-checklist:taxon:10b25b3a18eaac42cac983b0ad76cf5b,Africa (WGSRPD:2),native range,en
 ad-hoc-checklist:taxon:10b25b3a18eaac42cac983b0ad76cf5b,Asia,native range,en
@@ -31,6 +36,8 @@ ad-hoc-checklist:taxon:11f754026fc161e815b828b2126129f7,introduced,invasion stag
 ad-hoc-checklist:taxon:13804ff422c60a29bcdec99bf90e6a6b,Southern Asia,native range,en
 ad-hoc-checklist:taxon:13804ff422c60a29bcdec99bf90e6a6b,cbd_2014_pathway:contaminant_animal_parasite,pathway,en
 ad-hoc-checklist:taxon:13804ff422c60a29bcdec99bf90e6a6b,established,invasion stage,en
+ad-hoc-checklist:taxon:14de6c057a4723e3fda744e7ac82e408,cbd_2014_pathway:contaminant_nursery,pathway,en
+ad-hoc-checklist:taxon:14de6c057a4723e3fda744e7ac82e408,introduced,invasion stage,en
 ad-hoc-checklist:taxon:163341620b597b184210c02024ddb74e,"Bolivia, Chile, Argentina",native range,en
 ad-hoc-checklist:taxon:163341620b597b184210c02024ddb74e,cbd_2014_pathway:stowaway_container,pathway,en
 ad-hoc-checklist:taxon:163341620b597b184210c02024ddb74e,introduced,invasion stage,en
@@ -71,6 +78,8 @@ ad-hoc-checklist:taxon:24d4a2b0a38490cb84695fc57036b473,Southern Europe,native r
 ad-hoc-checklist:taxon:24d4a2b0a38490cb84695fc57036b473,cbd_2014_pathway:contaminant_habitat_material,pathway,en
 ad-hoc-checklist:taxon:24d4a2b0a38490cb84695fc57036b473,cbd_2014_pathway:stowaway_vehicles,pathway,en
 ad-hoc-checklist:taxon:24d4a2b0a38490cb84695fc57036b473,introduced,invasion stage,en
+ad-hoc-checklist:taxon:25d90bad36d561c33ed5adf6bb8eb795,cbd_2014_pathway:contaminant_nursery,pathway,en
+ad-hoc-checklist:taxon:25d90bad36d561c33ed5adf6bb8eb795,established,invasion stage,en
 ad-hoc-checklist:taxon:26674daaa2dbc0076155a4c1bc9771a3,Asia,native range,en
 ad-hoc-checklist:taxon:26674daaa2dbc0076155a4c1bc9771a3,cbd_2014_pathway:release_hunting,pathway,en
 ad-hoc-checklist:taxon:26674daaa2dbc0076155a4c1bc9771a3,established,invasion stage,en
@@ -115,6 +124,7 @@ ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,North America,native ran
 ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,cbd_2014_pathway:escape_fur_farm,pathway,en
 ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,cbd_2014_pathway:unaided,pathway,en
 ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,introduced,invasion stage,en
+ad-hoc-checklist:taxon:3915fd185e789f039c7d2f648d712dbb,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:3b00b08242070ade93b08f0874f23812,Macaronesia,native range,en
 ad-hoc-checklist:taxon:3b00b08242070ade93b08f0874f23812,introduced,invasion stage,en
 ad-hoc-checklist:taxon:3e2f6f1a9a929a4661c726f0e0ba821f,"Northern Africa, Southern Europe To Turkey",native range,en
@@ -157,6 +167,7 @@ ad-hoc-checklist:taxon:51c001f265c9a71e54b3560f72b04361,introduced,invasion stag
 ad-hoc-checklist:taxon:524c058deae407e21758048d3d4149fa,Southern Europe,native range,en
 ad-hoc-checklist:taxon:524c058deae407e21758048d3d4149fa,cbd_2014_pathway:stowaway_container,pathway,en
 ad-hoc-checklist:taxon:524c058deae407e21758048d3d4149fa,established,invasion stage,en
+ad-hoc-checklist:taxon:53247b99117567521a949d8026e735b4,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:57d6dec70a1a1b277dd49d9da6b669aa,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:57d6dec70a1a1b277dd49d9da6b669aa,introduced,invasion stage,en
 ad-hoc-checklist:taxon:5af88cdec41200398f311e61bb98a333,Southern Asia,native range,en
@@ -168,6 +179,7 @@ ad-hoc-checklist:taxon:5e110f7f024e5d2f10cb3fd231765bb1,cbd_2014_pathway:escape_
 ad-hoc-checklist:taxon:5e110f7f024e5d2f10cb3fd231765bb1,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:5e110f7f024e5d2f10cb3fd231765bb1,established,invasion stage,en
 ad-hoc-checklist:taxon:619409b42139334b2517e7b7f3024b48,Europe (WGSRPD:1),native range,en
+ad-hoc-checklist:taxon:619409b42139334b2517e7b7f3024b48,cbd_2014_pathway:contaminant_timber,pathway,en
 ad-hoc-checklist:taxon:6216e4d9dc3ae7a225e69e9d93d7984d,Europe To Northern Africa,native range,en
 ad-hoc-checklist:taxon:6216e4d9dc3ae7a225e69e9d93d7984d,established,invasion stage,en
 ad-hoc-checklist:taxon:62d1568b524d9f9cb99dfcecf9bf2b15,Cosmopolitan,native range,en
@@ -178,6 +190,8 @@ ad-hoc-checklist:taxon:699905a4bec8de2d677240f1ba1ab73c,Mediterranean,native ran
 ad-hoc-checklist:taxon:69c04e84e8c6abc981ad1c57068556cb,Africa (WGSRPD:2),native range,en
 ad-hoc-checklist:taxon:69c04e84e8c6abc981ad1c57068556cb,cbd_2014_pathway:escape_research,pathway,en
 ad-hoc-checklist:taxon:69c04e84e8c6abc981ad1c57068556cb,introduced,invasion stage,en
+ad-hoc-checklist:taxon:69e7b4c6116f93ea9122a68edc53bc4e,cbd_2014_pathway:contaminant_nursery,pathway,en
+ad-hoc-checklist:taxon:69e7b4c6116f93ea9122a68edc53bc4e,introduced,invasion stage,en
 ad-hoc-checklist:taxon:6ace4f4bb6441dcd4d979df6325d1892,Cosmopolitan,native range,en
 ad-hoc-checklist:taxon:6ace4f4bb6441dcd4d979df6325d1892,introduced,invasion stage,en
 ad-hoc-checklist:taxon:6b55ee7cd04dbbc71b04f89d78270b35,Africa (WGSRPD:2),native range,en
@@ -203,12 +217,15 @@ ad-hoc-checklist:taxon:7755fc64fafe2f680dc851e927acec8e,"Europe, Asia",native ra
 ad-hoc-checklist:taxon:7755fc64fafe2f680dc851e927acec8e,introduced,invasion stage,en
 ad-hoc-checklist:taxon:77cc867ef34c63c9cfbd93b7ec4c5798,North America,native range,en
 ad-hoc-checklist:taxon:77cc867ef34c63c9cfbd93b7ec4c5798,established,invasion stage,en
+ad-hoc-checklist:taxon:77ccd0407b41a5dde7f2a574433a2d4b,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:797b7793e700846ab8f407d68e6ea06a,Near East,native range,en
 ad-hoc-checklist:taxon:797b7793e700846ab8f407d68e6ea06a,introduced,invasion stage,en
 ad-hoc-checklist:taxon:7aa6ab0e614871879791b7e776b48f82,cbd_2014_pathway:stowaway_other,pathway,en
 ad-hoc-checklist:taxon:7aa6ab0e614871879791b7e776b48f82,introduced,invasion stage,en
 ad-hoc-checklist:taxon:7aea5e381c2a5a9594c555f1a1c5cd31,"Southern Europe, Africa, Turkey, Caucasus, Near East, Iran",native range,en
 ad-hoc-checklist:taxon:7aea5e381c2a5a9594c555f1a1c5cd31,introduced,invasion stage,en
+ad-hoc-checklist:taxon:7b142018a287e0bcd4af825d5841c1fe,cbd_2014_pathway:escape_pet,pathway,en
+ad-hoc-checklist:taxon:7b142018a287e0bcd4af825d5841c1fe,introduced,invasion stage,en
 ad-hoc-checklist:taxon:7c135fd9079e223ad0ca34d4a62d80ec,Central America (WGSRPD:80),native range,en
 ad-hoc-checklist:taxon:7c135fd9079e223ad0ca34d4a62d80ec,introduced,invasion stage,en
 ad-hoc-checklist:taxon:7c9104fee9ebf9aec00717959e423e75,Asia,native range,en
@@ -251,6 +268,7 @@ ad-hoc-checklist:taxon:93e8daa0c142afee8b7c23beaf6fd881,established,invasion sta
 ad-hoc-checklist:taxon:93f032ef550764f09f06b824bfe26168,Iberia,native range,en
 ad-hoc-checklist:taxon:93f032ef550764f09f06b824bfe26168,cbd_2014_pathway:release_landscape_improvement,pathway,en
 ad-hoc-checklist:taxon:93f032ef550764f09f06b824bfe26168,established,invasion stage,en
+ad-hoc-checklist:taxon:96d88ef770349c9178c4740fa6238967,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:97e0c3c6761da310202ce679ffb02f0e,Europe (WGSRPD:1),native range,en
 ad-hoc-checklist:taxon:97e0c3c6761da310202ce679ffb02f0e,cbd_2014_pathway:release_landscape_improvement,pathway,en
 ad-hoc-checklist:taxon:97e0c3c6761da310202ce679ffb02f0e,cbd_2014_pathway:release_conservation,pathway,en
@@ -258,6 +276,8 @@ ad-hoc-checklist:taxon:97e0c3c6761da310202ce679ffb02f0e,established,invasion sta
 ad-hoc-checklist:taxon:9acf4ea73c290cdcdf5226cb0867d4b3,"Europe, Africa, Yemen, Pakistan, Philippines",native range,en
 ad-hoc-checklist:taxon:9acf4ea73c290cdcdf5226cb0867d4b3,established,invasion stage,en
 ad-hoc-checklist:taxon:9d7592ff737bd1147e1ddad053f61f1e,Southern America (WGSRPD:8),native range,en
+ad-hoc-checklist:taxon:9d7592ff737bd1147e1ddad053f61f1e,cbd_2014_pathway:contaminant_nursery,pathway,en
+ad-hoc-checklist:taxon:9d7592ff737bd1147e1ddad053f61f1e,cbd_2014_pathway:contaminant_habitat_material,pathway,en
 ad-hoc-checklist:taxon:9d7592ff737bd1147e1ddad053f61f1e,established,invasion stage,en
 ad-hoc-checklist:taxon:9db3ec2b2970a36239e47538fc1c1257,Asia And Pacific Islands,native range,en
 ad-hoc-checklist:taxon:9db3ec2b2970a36239e47538fc1c1257,cbd_2014_pathway:stowaway_container,pathway,en
@@ -269,6 +289,9 @@ ad-hoc-checklist:taxon:9eac89b53b072c9d7774bf9a9c5aeb7b,cbd_2014_pathway:natural
 ad-hoc-checklist:taxon:9eac89b53b072c9d7774bf9a9c5aeb7b,established,invasion stage,en
 ad-hoc-checklist:taxon:9f818804cf4820a105305a9e87d16d64,introduced,invasion stage,en
 ad-hoc-checklist:taxon:9ff05227e4481f8f997eab5ab232e364,North America,native range,en
+ad-hoc-checklist:taxon:9ff05227e4481f8f997eab5ab232e364,cbd_2014_pathway:escape_pet,pathway,en
+ad-hoc-checklist:taxon:9ff05227e4481f8f997eab5ab232e364,cbd_2014_pathway:unaided,pathway,en
+ad-hoc-checklist:taxon:9ff05227e4481f8f997eab5ab232e364,introduced,invasion stage,en
 ad-hoc-checklist:taxon:a014122f89fe277d61cc4da345908816,Mediterranean To Central Asia,native range,en
 ad-hoc-checklist:taxon:a014122f89fe277d61cc4da345908816,introduced,invasion stage,en
 ad-hoc-checklist:taxon:a0be227e2f527ac9e9902c824c4ec6d5,Asia,native range,en
@@ -308,12 +331,15 @@ ad-hoc-checklist:taxon:b303ff59fd9219ebb30b25b2be2f5c7f,established,invasion sta
 ad-hoc-checklist:taxon:b4cf0aba64bc041909012c9a9f30af50,"Macaronesia, North Africa, Europe, Turkey, Caucasus, Near East, Kazakhstan",native range,en
 ad-hoc-checklist:taxon:b4cf0aba64bc041909012c9a9f30af50,established,invasion stage,en
 ad-hoc-checklist:taxon:b577f19eaa5a4484840ef9e20b483b77,cbd_2014_pathway:release_hunting,pathway,en
+ad-hoc-checklist:taxon:b8eafdd47eb96660ec502f97130150c7,cbd_2014_pathway:contaminant_nursery,pathway,en
+ad-hoc-checklist:taxon:b8eafdd47eb96660ec502f97130150c7,introduced,invasion stage,en
 ad-hoc-checklist:taxon:b9d94142fc7c7d6afec33a094c166798,Australia,native range,en
 ad-hoc-checklist:taxon:b9d94142fc7c7d6afec33a094c166798,cbd_2014_pathway:release_biological_control,pathway,en
 ad-hoc-checklist:taxon:b9d94142fc7c7d6afec33a094c166798,introduced,invasion stage,en
 ad-hoc-checklist:taxon:ba1598720717ed0f2c48f4c5cd4ae03e,established,invasion stage,en
 ad-hoc-checklist:taxon:ba1a355a9291fa639987093f37a520dc,"Egypt, Ethiopia, Kenya, Uganda, Rwanda",native range,en
 ad-hoc-checklist:taxon:ba1a355a9291fa639987093f37a520dc,introduced,invasion stage,en
+ad-hoc-checklist:taxon:ba1a6ff5168cf2fd8377f78c2bc0bba7,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:bd2aa8e750928f3328aadc139fd9468c,Mediterranean & Portugal,native range,en
 ad-hoc-checklist:taxon:bd2aa8e750928f3328aadc139fd9468c,introduced,invasion stage,en
 ad-hoc-checklist:taxon:be96cf04947663eb0bf8776e9773b75a,"Europe, North Africa To Near East, Turkey, Caucasus, Russia To Central Asia, Iran, Afghanistan, China, Mongolia, Korea",native range,en
@@ -328,7 +354,7 @@ ad-hoc-checklist:taxon:c0c9cd1c21da4c817adb6003f8bb5bd7,cbd_2014_pathway:escape_
 ad-hoc-checklist:taxon:c0c9cd1c21da4c817adb6003f8bb5bd7,introduced,invasion stage,en
 ad-hoc-checklist:taxon:c2752e3916719b68c39881698c8dd712,Asia,native range,en
 ad-hoc-checklist:taxon:c2752e3916719b68c39881698c8dd712,cbd_2014_pathway:stowaway_other,pathway,en
-ad-hoc-checklist:taxon:c2752e3916719b68c39881698c8dd712,established,invasion stage,en
+ad-hoc-checklist:taxon:c2752e3916719b68c39881698c8dd712,introduced,invasion stage,en
 ad-hoc-checklist:taxon:c57c222eb4233fdf9a1e6a215daa3f8f,Eastern Asia,native range,en
 ad-hoc-checklist:taxon:c57c222eb4233fdf9a1e6a215daa3f8f,cbd_2014_pathway:stowaway,pathway,en
 ad-hoc-checklist:taxon:c57c222eb4233fdf9a1e6a215daa3f8f,introduced,invasion stage,en
@@ -352,6 +378,10 @@ ad-hoc-checklist:taxon:cfc9218998f1ad6c9c12da96b6629754,introduced,invasion stag
 ad-hoc-checklist:taxon:d22fb25d305ce32b0672c8212c8d9244,"North America, Europe, North Africa, Turkey, Israel, Caucasus, Russia (European To Far East), Central Asia, China, Korea",native range,en
 ad-hoc-checklist:taxon:d22fb25d305ce32b0672c8212c8d9244,introduced,invasion stage,en
 ad-hoc-checklist:taxon:d2645a4d4627c6d21c880465db3a350a,established,invasion stage,en
+ad-hoc-checklist:taxon:d4e4618bd9c2f81c096cb372dd78b33d,North America,native range,en
+ad-hoc-checklist:taxon:d4e4618bd9c2f81c096cb372dd78b33d,cbd_2014_pathway:escape_pet,pathway,en
+ad-hoc-checklist:taxon:d4e4618bd9c2f81c096cb372dd78b33d,cbd_2014_pathway:release_other,pathway,en
+ad-hoc-checklist:taxon:d4e4618bd9c2f81c096cb372dd78b33d,introduced,invasion stage,en
 ad-hoc-checklist:taxon:d5d3f80372100602964cd1f8fa6265af,Southern Europe,native range,en
 ad-hoc-checklist:taxon:d5d3f80372100602964cd1f8fa6265af,cbd_2014_pathway:stowaway_vehicles,pathway,en
 ad-hoc-checklist:taxon:d5d3f80372100602964cd1f8fa6265af,introduced,invasion stage,en
