@@ -102,6 +102,10 @@ ad-hoc-checklist:taxon:2a57b5e6ede563a0ccf6a9d83d599c2d,established,invasion sta
 ad-hoc-checklist:taxon:2afa7ada35e7ffa8f23de43c9ff60a06,North America,native range,en
 ad-hoc-checklist:taxon:2afa7ada35e7ffa8f23de43c9ff60a06,cbd_2014_pathway:stowaway_container,pathway,en
 ad-hoc-checklist:taxon:2afa7ada35e7ffa8f23de43c9ff60a06,introduced,invasion stage,en
+ad-hoc-checklist:taxon:2f3dc8f283b4402335d1911a9d948ccf,North America,native range,en
+ad-hoc-checklist:taxon:2f3dc8f283b4402335d1911a9d948ccf,cbd_2014_pathway:escape_pet,pathway,en
+ad-hoc-checklist:taxon:2f3dc8f283b4402335d1911a9d948ccf,cbd_2014_pathway:release_other,pathway,en
+ad-hoc-checklist:taxon:2f3dc8f283b4402335d1911a9d948ccf,introduced,invasion stage,en
 ad-hoc-checklist:taxon:2fb8ca3deefe5776669a297af9b9a2bb,cbd_2014_pathway:stowaway_other,pathway,en
 ad-hoc-checklist:taxon:2fb8ca3deefe5776669a297af9b9a2bb,established,invasion stage,en
 ad-hoc-checklist:taxon:30da151bf3ba5497c6b4d72f4b3bfdfd,Africa (WGSRPD:2),native range,en
@@ -116,10 +120,6 @@ ad-hoc-checklist:taxon:34578d09afa85247cfc1d1d993e85f23,North America,native ran
 ad-hoc-checklist:taxon:34578d09afa85247cfc1d1d993e85f23,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:34578d09afa85247cfc1d1d993e85f23,cbd_2014_pathway:release_other,pathway,en
 ad-hoc-checklist:taxon:34578d09afa85247cfc1d1d993e85f23,introduced,invasion stage,en
-ad-hoc-checklist:taxon:348d670934acf5e64c5845c22483dcad,North America,native range,en
-ad-hoc-checklist:taxon:348d670934acf5e64c5845c22483dcad,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:348d670934acf5e64c5845c22483dcad,cbd_2014_pathway:release_other,pathway,en
-ad-hoc-checklist:taxon:348d670934acf5e64c5845c22483dcad,introduced,invasion stage,en
 ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,North America,native range,en
 ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,cbd_2014_pathway:escape_fur_farm,pathway,en
 ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,cbd_2014_pathway:unaided,pathway,en
@@ -136,6 +136,10 @@ ad-hoc-checklist:taxon:4415043d96d97342c001e05db58323cd,Nam,native range,en
 ad-hoc-checklist:taxon:4415043d96d97342c001e05db58323cd,cbd_2014_pathway:stowaway_ballast_water,pathway,en
 ad-hoc-checklist:taxon:4415043d96d97342c001e05db58323cd,introduced,invasion stage,en
 ad-hoc-checklist:taxon:4573993d9f1c11852bbf3ec29b34e066,cbd_2014_pathway:contaminant_animal_parasite,pathway,en
+ad-hoc-checklist:taxon:468abc4fa7be8283dfdabafc557755f4,North America,native range,en
+ad-hoc-checklist:taxon:468abc4fa7be8283dfdabafc557755f4,cbd_2014_pathway:escape_pet,pathway,en
+ad-hoc-checklist:taxon:468abc4fa7be8283dfdabafc557755f4,cbd_2014_pathway:release_other,pathway,en
+ad-hoc-checklist:taxon:468abc4fa7be8283dfdabafc557755f4,introduced,invasion stage,en
 ad-hoc-checklist:taxon:46f75db2bfca28104a610984172f1d16,Cosmopolitan,native range,en
 ad-hoc-checklist:taxon:46f75db2bfca28104a610984172f1d16,introduced,invasion stage,en
 ad-hoc-checklist:taxon:49813a076dc711cfc7346904890e425f,cbd_2014_pathway:escape_zoo,pathway,en
@@ -170,6 +174,10 @@ ad-hoc-checklist:taxon:524c058deae407e21758048d3d4149fa,established,invasion sta
 ad-hoc-checklist:taxon:53247b99117567521a949d8026e735b4,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:57d6dec70a1a1b277dd49d9da6b669aa,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:57d6dec70a1a1b277dd49d9da6b669aa,introduced,invasion stage,en
+ad-hoc-checklist:taxon:59464973fe73bb7ce6c6f41b8db2c469,North America,native range,en
+ad-hoc-checklist:taxon:59464973fe73bb7ce6c6f41b8db2c469,cbd_2014_pathway:escape_pet,pathway,en
+ad-hoc-checklist:taxon:59464973fe73bb7ce6c6f41b8db2c469,cbd_2014_pathway:release_other,pathway,en
+ad-hoc-checklist:taxon:59464973fe73bb7ce6c6f41b8db2c469,introduced,invasion stage,en
 ad-hoc-checklist:taxon:5af88cdec41200398f311e61bb98a333,Southern Asia,native range,en
 ad-hoc-checklist:taxon:5af88cdec41200398f311e61bb98a333,cbd_2014_pathway:contaminant_animal_parasite,pathway,en
 ad-hoc-checklist:taxon:5af88cdec41200398f311e61bb98a333,established,invasion stage,en
@@ -387,14 +395,6 @@ ad-hoc-checklist:taxon:d5d3f80372100602964cd1f8fa6265af,cbd_2014_pathway:stowawa
 ad-hoc-checklist:taxon:d5d3f80372100602964cd1f8fa6265af,introduced,invasion stage,en
 ad-hoc-checklist:taxon:d5fbeba170ae71d15efd3e15288de2c0,"Mediterranean, Northern Africa",native range,en
 ad-hoc-checklist:taxon:d5fbeba170ae71d15efd3e15288de2c0,established,invasion stage,en
-ad-hoc-checklist:taxon:d74c6f26c07265dba220e65aa59cd69d,North America,native range,en
-ad-hoc-checklist:taxon:d74c6f26c07265dba220e65aa59cd69d,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:d74c6f26c07265dba220e65aa59cd69d,cbd_2014_pathway:release_other,pathway,en
-ad-hoc-checklist:taxon:d74c6f26c07265dba220e65aa59cd69d,introduced,invasion stage,en
-ad-hoc-checklist:taxon:d7d4634d59911572835b8d68b682df09,North America,native range,en
-ad-hoc-checklist:taxon:d7d4634d59911572835b8d68b682df09,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:d7d4634d59911572835b8d68b682df09,cbd_2014_pathway:release_other,pathway,en
-ad-hoc-checklist:taxon:d7d4634d59911572835b8d68b682df09,introduced,invasion stage,en
 ad-hoc-checklist:taxon:d91a8abaf72f10b60ce4099bd58542ce,"Brazil, Uruguay, Paraguay, Argentina",native range,en
 ad-hoc-checklist:taxon:d91a8abaf72f10b60ce4099bd58542ce,introduced,invasion stage,en
 ad-hoc-checklist:taxon:de77f01b3fa727eced57d3cd4899466b,Southeast Asia,native range,en

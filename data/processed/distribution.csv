@@ -70,6 +70,7 @@ ad-hoc-checklist:taxon:2a57b5e6ede563a0ccf6a9d83d599c2d,ISO_3166-2:BE-VLG,Flemis
 ad-hoc-checklist:taxon:2afa7ada35e7ffa8f23de43c9ff60a06,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2013/2013,ARABEL exotendatabank (2018-08-10)
 ad-hoc-checklist:taxon:2b08658160feaa6b8796da6b359c133c,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2018/2018,
 ad-hoc-checklist:taxon:2ed5a5031f8e2cafe5bc86220bd71ee3,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1985/2018,Van Loen et al. 2006 rode lijst
+ad-hoc-checklist:taxon:2f3dc8f283b4402335d1911a9d948ccf,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1997/2018,Anonymus 2008
 ad-hoc-checklist:taxon:2fb8ca3deefe5776669a297af9b9a2bb,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2018/2018,
 ad-hoc-checklist:taxon:2fb8ca3deefe5776669a297af9b9a2bb,ISO_3166-2:BE-WAL,Walloon Region,BE,present,introduced,2018/2018,
 ad-hoc-checklist:taxon:30da151bf3ba5497c6b4d72f4b3bfdfd,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2018/2018,"Kekenbosch, J. Bosmans, R. & Baert, L. 1977. Soortenlijst der Belgische spinnen. Studiedocumenten van het Koninklijk Belgische Instituut voor Natuurwetenschappen, 11:1-36."
@@ -78,7 +79,6 @@ ad-hoc-checklist:taxon:314aeef7f38b0f092d5f40fbf139df9c,ISO_3166-2:BE-WAL,Walloo
 ad-hoc-checklist:taxon:32dc2e18733fffa92ba4e1b35d03c4e2,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1937/2018,"Van Goethem & Sablon, 1986"
 ad-hoc-checklist:taxon:335232c3b360c557a5986df287dab330,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2012-06-24/2014-03-30,"Jelinek J et al. (2016) Epuraea imperialis (Reitter, 1877). New invasive species of Nitidulidae (Coleoptera) in Europe, with a checklist of sap beetles introduced to Europe and Mediterranean areas. AAPP | Physical, Mathematical, and Natural Sciences, 94(2): 1-24. https://doi.org/10.1478/AAPP.942A4"
 ad-hoc-checklist:taxon:34578d09afa85247cfc1d1d993e85f23,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2005/2018,Anonymus 2008
-ad-hoc-checklist:taxon:348d670934acf5e64c5845c22483dcad,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2003/2018,Anonymus 2008
 ad-hoc-checklist:taxon:384d1fdb50d88ba923d765565c9a6bb5,ISO_3166-2:BE,Belgium,BE,present,introduced,2018/2018,
 ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1987/2018,Van den Berge Zoogdier http://www.zoogdierwinkel.nl/sites/default/files/imce/nieuwesite/Winkel/pdf%20download/Zoogdier_Jaargang_19_2_2008_JUN_0.pdf
 ad-hoc-checklist:taxon:3915fd185e789f039c7d2f648d712dbb,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2002/2018,"Drumont et al. 2018 Note sur quelques espèces invasives d'Otiorhynchus Germar, 1822 en Belgique (Coleoptera: Curculionidae). Bulletin de la Société royale belge d’Entomologie/Bulletin van de Koninklijke Belgische vereniging voor entomologie 154 : 97–104"
@@ -96,6 +96,7 @@ ad-hoc-checklist:taxon:4034d15d25704640fbd47e492335f4f1,ISO_3166-2:BE-VLG,Flemis
 ad-hoc-checklist:taxon:4083a806b5a17baf5aa9c992bf9fbe1c,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2015-02-05/2018,"De Smedt P, Arijs G, Segers S, Boeraeve P (2017) Woodlice of the green houses at Ghent Botanical Garden and Botanic Garden Meise with two new exotic species for Belgium (Isopoda: Oniscidae). Bulletin de la Société royale belge d’Entomologie/Bulletin van de Koninklijke Belgische Vereniging voor Entomologie, 153: 109-112."
 ad-hoc-checklist:taxon:4415043d96d97342c001e05db58323cd,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2018/2018,Verreycken pers comm
 ad-hoc-checklist:taxon:4573993d9f1c11852bbf3ec29b34e066,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2018/2018,
+ad-hoc-checklist:taxon:468abc4fa7be8283dfdabafc557755f4,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2003/2018,Anonymus 2008
 ad-hoc-checklist:taxon:46f75db2bfca28104a610984172f1d16,ISO_3166-2:BE,Belgium,BE,present,introduced,1980/2018,"Dekoninck W. & Brouckaert D., 2011. Paratrechina longicornis an introduced ant in a subtropicaswimming pool infrastructure in Belgium. Bulletin S.R.B.E./K.B.V.E., 147: 99-101."
 ad-hoc-checklist:taxon:48855c1bd5918162569e441183521871,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2015-02-05/2018,"De Smedt P, Arijs G, Segers S, Boeraeve P (2017) Woodlice of the green houses at Ghent Botanical Garden and Botanic Garden Meise with two new exotic species for Belgium (Isopoda: Oniscidae). Bulletin de la Société royale belge d’Entomologie/Bulletin van de Koninklijke Belgische Vereniging voor Entomologie, 153: 109-112."
 ad-hoc-checklist:taxon:49813a076dc711cfc7346904890e425f,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1976/2018,"Verbeylen, G. (2003) in Verkem, S., De Maeseneer, J., Vandendriessche, B., Verbeylen, G. & Yskout, S. Zoogdieren in Vlaanderen. Ecologie en verspreiding van 1987 tot 2002. Natuurpunt Studie en JNM-Zoogdierenwerkgroep, Mechelen en Gent, België."
@@ -115,6 +116,7 @@ ad-hoc-checklist:taxon:51c001f265c9a71e54b3560f72b04361,ISO_3166-2:BE-VLG,Flemis
 ad-hoc-checklist:taxon:524c058deae407e21758048d3d4149fa,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2014/2018,"Ronsmans, J. & Van den Neucker T. (2016) A persistent population of the chocolate-band snail Eobania vermiculata (Gastropoda: Helicidae) in Belgium. Belg. J. Zool., 146 (1): 66-68"
 ad-hoc-checklist:taxon:53247b99117567521a949d8026e735b4,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2009/2018,
 ad-hoc-checklist:taxon:57d6dec70a1a1b277dd49d9da6b669aa,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2011/2018,unpubl. observation
+ad-hoc-checklist:taxon:59464973fe73bb7ce6c6f41b8db2c469,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1975/2018,Anonymus 2008
 ad-hoc-checklist:taxon:5af88cdec41200398f311e61bb98a333,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2004/2011,"Dozieres, A., Pisanu, B., Gerriet, O., Lapeyre, C., Stuyck, J. & Cha- ` puis, J.-L. (2010) Macroparasites of Pallas’s squirrels, Callosciurus erythraeus, introduced into Europe. Veterinary Parasitology, 172, 172–176."
 ad-hoc-checklist:taxon:5d54247062aa163fc4eb4788d4d23ad9,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2018/2018,
 ad-hoc-checklist:taxon:5d5814ec63be19cb1459889d555f1f01,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1946/2018,Van Loen et al. 2006 rode lijst
@@ -270,8 +272,6 @@ ad-hoc-checklist:taxon:d4a776a214729a3f11591a68aa900f87,ISO_3166-2:BE,Belgium,BE
 ad-hoc-checklist:taxon:d4e4618bd9c2f81c096cb372dd78b33d,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1975/2020,Anonymus 2008
 ad-hoc-checklist:taxon:d5d3f80372100602964cd1f8fa6265af,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2019/2019,Saltabel
 ad-hoc-checklist:taxon:d5fbeba170ae71d15efd3e15288de2c0,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1994/2010,"Van Keer, K. & Van Keer, J. 2001. Ingeburgerde exotische trilspinnen (Araneae: Pholcidae) in Antwerpse haven en enkele algemene bedenkingen bij spinnenmigratie. Nieuwsbrief van de Belgische Arachnologische Vereniging, 16(3):81-86."
-ad-hoc-checklist:taxon:d74c6f26c07265dba220e65aa59cd69d,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1997/2018,Anonymus 2008
-ad-hoc-checklist:taxon:d7d4634d59911572835b8d68b682df09,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1975/2018,Anonymus 2008
 ad-hoc-checklist:taxon:d91a8abaf72f10b60ce4099bd58542ce,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1986/1987,"Baert, L. 1987. Ctenidae met bananen ingevoerd in België. Nieuwsbrief van de Belgische Arachnologische Vereniging, 2(1):34."
 ad-hoc-checklist:taxon:de77f01b3fa727eced57d3cd4899466b,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,2018/2018,
 ad-hoc-checklist:taxon:dedfc4db712063102f022beb7a51eb6e,ISO_3166-2:BE-VLG,Flemish Region,BE,present,introduced,1927/2018,"Adam, 1947 Adam, 1960"
