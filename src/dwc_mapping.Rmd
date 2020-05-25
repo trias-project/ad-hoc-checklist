@@ -202,6 +202,22 @@ Map values:
 taxon %<>% mutate(dwc_phylum = phylum)
 ```
 
+### class
+
+Inspect values:
+
+```{r}
+taxon %>%
+  group_by(class) %>%
+  count()
+```
+
+Map values:
+
+```{r}
+taxon %<>% mutate(dwc_class = class)
+```
+
 ### order
 
 Inspect values:
