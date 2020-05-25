@@ -106,7 +106,7 @@ input_data %>% head()
 
 # Darwin Core mapping
 
-## Create taxon core
+## Taxon core
 
 Create a dataframe with unique taxa only (ignoring multiple distribution rows):
 
@@ -288,7 +288,7 @@ taxon %<>% mutate(dwc_taxonRank = taxon_rank)
 taxon %<>% mutate(dwc_nomenclaturalCode = nomenclatural_code)
 ```
 
-## Create literature references extension
+## Literature references extension
 
 In this extension we will express references from `source`, separated and gathered.
 
@@ -338,7 +338,7 @@ literature_references %<>% mutate(dwc_identifier = str_extract(value, "http\\S+"
 literature_references %<>% mutate(dwc_bibliographicCitation = value) 
 ```
 
-## Create distribution extension
+## Distribution extension
 
 Create a dataframe with all data (including multiple distributions):
 
@@ -466,7 +466,7 @@ Use the `source` field as is. Its content is expected to be concatenated with ` 
 distribution %<>% mutate(dwc_source = source) 
 ```
 
-## Create species profile extension
+## Species profile extension
 
 In this extension we will express broad habitat characteristics of the species (e.g. `isTerrestrial`) from `realm`.
 
@@ -539,7 +539,7 @@ species_profile %>%
   summarize(records = n())
 ```
 
-## Create description extension
+## Description extension
 
 In the description extension we want to include several important characteristics (hereafter referred to as descriptors) about the species:
 
@@ -551,7 +551,7 @@ The structure of the description extension is slightly different from the other 
 
 For each descriptor, we create a separate dataframe to process the specific information. We always specify _which descriptor_ we map (`type` column) and its _specific content_ (`description` column). After the mapping of these Darwin Core terms `type` and `value`, we merge the dataframes to generate one single description extension. We then continue the mapping process by adding the other Darwin Core terms (which content is independent of the type of descriptor, such as `language`).
 
-#### Native range
+### Native range
 
 We will express native range information from `native_range`, separated and gathered.
 
@@ -652,7 +652,7 @@ Create a `type` field to indicate the type of description:
 native_range %<>% mutate(type = "native range")
 ```
 
-#### Pathway of introduction
+### Pathway of introduction
 
 We will express pathway information (e.g. `aquaculture`) from `introduction_pathway`, separated and gathered.
 
@@ -732,7 +732,7 @@ Keep only non-empty descriptions:
 pathway_desc %<>% filter(!is.na(description) & description != "")
 ```
 
-#### Invasion stage
+### Invasion stage
 
 We will express invasion stage from `degree_of_establishment`.
 
@@ -786,8 +786,6 @@ Create a `type` field to indicate the type of description:
 ```{r}
 invasion_stage %<>% mutate(type = "invasion stage")
 ```
-
-#### Union descriptions
 
 Union native range, pathway of introduction and invasion stage:
 
