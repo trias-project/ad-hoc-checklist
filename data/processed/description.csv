@@ -134,6 +134,10 @@ ad-hoc-checklist:taxon:2a57b5e6ede563a0ccf6a9d83d599c2d,established,degree of es
 ad-hoc-checklist:taxon:2afa7ada35e7ffa8f23de43c9ff60a06,North America,native range,en
 ad-hoc-checklist:taxon:2afa7ada35e7ffa8f23de43c9ff60a06,cbd_2014_pathway:stowaway_container,pathway,en
 ad-hoc-checklist:taxon:2afa7ada35e7ffa8f23de43c9ff60a06,introduced,degree of establishment,en
+ad-hoc-checklist:taxon:2b5333bc423aaa15491b8575fbffe5b8,Eastern Asia,native range,en
+ad-hoc-checklist:taxon:2b5333bc423aaa15491b8575fbffe5b8,cbd_2014_pathway:escape_pet,pathway,en
+ad-hoc-checklist:taxon:2b5333bc423aaa15491b8575fbffe5b8,cbd_2014_pathway:release_other,pathway,en
+ad-hoc-checklist:taxon:2b5333bc423aaa15491b8575fbffe5b8,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:2c5bfda90a9afb0bdc52c115642ef60a,Africa (WGSRPD:2),native range,en
 ad-hoc-checklist:taxon:2c5bfda90a9afb0bdc52c115642ef60a,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:2c5bfda90a9afb0bdc52c115642ef60a,introduced,degree of establishment,en
@@ -244,6 +248,10 @@ ad-hoc-checklist:taxon:5479610d1ff3a0ebc7691ff3f817062b,Australia,native range,e
 ad-hoc-checklist:taxon:5479610d1ff3a0ebc7691ff3f817062b,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:5479610d1ff3a0ebc7691ff3f817062b,cbd_2014_pathway:release_other,pathway,en
 ad-hoc-checklist:taxon:5479610d1ff3a0ebc7691ff3f817062b,introduced,degree of establishment,en
+ad-hoc-checklist:taxon:5514e5142190e82ca5a79eeec8b18442,Madagascar,native range,en
+ad-hoc-checklist:taxon:5514e5142190e82ca5a79eeec8b18442,cbd_2014_pathway:escape_pet,pathway,en
+ad-hoc-checklist:taxon:5514e5142190e82ca5a79eeec8b18442,cbd_2014_pathway:release_other,pathway,en
+ad-hoc-checklist:taxon:5514e5142190e82ca5a79eeec8b18442,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:57d6dec70a1a1b277dd49d9da6b669aa,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:57d6dec70a1a1b277dd49d9da6b669aa,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:58e54c752ab1a10d28157e225f283408,Central America (WGSRPD:80),native range,en
@@ -422,10 +430,6 @@ ad-hoc-checklist:taxon:97e0c3c6761da310202ce679ffb02f0e,cbd_2014_pathway:release
 ad-hoc-checklist:taxon:97e0c3c6761da310202ce679ffb02f0e,established,degree of establishment,en
 ad-hoc-checklist:taxon:9acf4ea73c290cdcdf5226cb0867d4b3,"Europe, Africa, Yemen, Pakistan, Philippines",native range,en
 ad-hoc-checklist:taxon:9acf4ea73c290cdcdf5226cb0867d4b3,established,degree of establishment,en
-ad-hoc-checklist:taxon:9cc16e3dec6fbcf1e794b845c1712231,Madagascar,native range,en
-ad-hoc-checklist:taxon:9cc16e3dec6fbcf1e794b845c1712231,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:9cc16e3dec6fbcf1e794b845c1712231,cbd_2014_pathway:release_other,pathway,en
-ad-hoc-checklist:taxon:9cc16e3dec6fbcf1e794b845c1712231,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:9d7592ff737bd1147e1ddad053f61f1e,Southern America (WGSRPD:8),native range,en
 ad-hoc-checklist:taxon:9d7592ff737bd1147e1ddad053f61f1e,cbd_2014_pathway:contaminant_nursery,pathway,en
 ad-hoc-checklist:taxon:9d7592ff737bd1147e1ddad053f61f1e,cbd_2014_pathway:contaminant_habitat_material,pathway,en
@@ -563,10 +567,6 @@ ad-hoc-checklist:taxon:cbdc614106cabf7593745bf917c76fb4,"Central, South America"
 ad-hoc-checklist:taxon:cbdc614106cabf7593745bf917c76fb4,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:cd1691e4cb907d5a0ac6486f23a6917f,"Spain, Italy, North Africa",native range,en
 ad-hoc-checklist:taxon:cd1691e4cb907d5a0ac6486f23a6917f,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:cd7d2bda9bf91acd10f9b2c958621558,Eastern Asia,native range,en
-ad-hoc-checklist:taxon:cd7d2bda9bf91acd10f9b2c958621558,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:cd7d2bda9bf91acd10f9b2c958621558,cbd_2014_pathway:release_other,pathway,en
-ad-hoc-checklist:taxon:cd7d2bda9bf91acd10f9b2c958621558,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:cdfc7a143e4d978cd4ca0c83d60fc43d,"Cyprus, Turkey, Middle East, Egypt, Sudan",native range,en
 ad-hoc-checklist:taxon:cdfc7a143e4d978cd4ca0c83d60fc43d,cbd_2014_pathway:contaminant_food,pathway,en
 ad-hoc-checklist:taxon:cdfc7a143e4d978cd4ca0c83d60fc43d,introduced,degree of establishment,en
