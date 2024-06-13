@@ -79,16 +79,9 @@ ad-hoc-checklist:taxon:24d4a2b0a38490cb84695fc57036b473,cbd_2014_pathway:stowawa
 ad-hoc-checklist:taxon:24d4a2b0a38490cb84695fc57036b473,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:25d90bad36d561c33ed5adf6bb8eb795,cbd_2014_pathway:contaminant_nursery,pathway,en
 ad-hoc-checklist:taxon:25d90bad36d561c33ed5adf6bb8eb795,established,degree of establishment,en
-ad-hoc-checklist:taxon:26674daaa2dbc0076155a4c1bc9771a3,Asia,native range,en
-ad-hoc-checklist:taxon:26674daaa2dbc0076155a4c1bc9771a3,cbd_2014_pathway:release_hunting,pathway,en
-ad-hoc-checklist:taxon:26674daaa2dbc0076155a4c1bc9771a3,established,degree of establishment,en
-ad-hoc-checklist:taxon:275025010e3bea243fa9ce9532ec6d72,North America,native range,en
-ad-hoc-checklist:taxon:275025010e3bea243fa9ce9532ec6d72,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:275025010e3bea243fa9ce9532ec6d72,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:2772197eb7786a8da331440c09e79155,Australia,native range,en
 ad-hoc-checklist:taxon:2772197eb7786a8da331440c09e79155,cbd_2014_pathway:contaminant_habitat_material,pathway,en
 ad-hoc-checklist:taxon:2772197eb7786a8da331440c09e79155,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:27a54674f4afcd6d8dbc893680da5bae,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:292a4951cbdd8cc0118e5d53af1ed84e,Asia,native range,en
 ad-hoc-checklist:taxon:292a4951cbdd8cc0118e5d53af1ed84e,cbd_2014_pathway:stowaway_organic_packing,pathway,en
 ad-hoc-checklist:taxon:292a4951cbdd8cc0118e5d53af1ed84e,introduced,degree of establishment,en
@@ -110,10 +103,6 @@ ad-hoc-checklist:taxon:30da151bf3ba5497c6b4d72f4b3bfdfd,introduced,degree of est
 ad-hoc-checklist:taxon:314aeef7f38b0f092d5f40fbf139df9c,Southeast Asia,native range,en
 ad-hoc-checklist:taxon:314aeef7f38b0f092d5f40fbf139df9c,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:335232c3b360c557a5986df287dab330,Australia,native range,en
-ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,North America,native range,en
-ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,cbd_2014_pathway:escape_fur_farm,pathway,en
-ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,cbd_2014_pathway:unaided_natural_dispersal,pathway,en
-ad-hoc-checklist:taxon:385364b6232734897633a95d3830a630,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:3915fd185e789f039c7d2f648d712dbb,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:3b00b08242070ade93b08f0874f23812,Macaronesia,native range,en
 ad-hoc-checklist:taxon:3b00b08242070ade93b08f0874f23812,introduced,degree of establishment,en
@@ -128,9 +117,6 @@ ad-hoc-checklist:taxon:4415043d96d97342c001e05db58323cd,introduced,degree of est
 ad-hoc-checklist:taxon:4573993d9f1c11852bbf3ec29b34e066,cbd_2014_pathway:contaminant_animal_parasite,pathway,en
 ad-hoc-checklist:taxon:46f75db2bfca28104a610984172f1d16,Cosmopolitan,native range,en
 ad-hoc-checklist:taxon:46f75db2bfca28104a610984172f1d16,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:49813a076dc711cfc7346904890e425f,cbd_2014_pathway:escape_zoo,pathway,en
-ad-hoc-checklist:taxon:49813a076dc711cfc7346904890e425f,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:49813a076dc711cfc7346904890e425f,established,degree of establishment,en
 ad-hoc-checklist:taxon:4b5e8c4fe00adae4e59033c31cad9612,Australia,native range,en
 ad-hoc-checklist:taxon:4b5e8c4fe00adae4e59033c31cad9612,cbd_2014_pathway:release_biological_control,pathway,en
 ad-hoc-checklist:taxon:4b5e8c4fe00adae4e59033c31cad9612,introduced,degree of establishment,en
@@ -155,16 +141,9 @@ ad-hoc-checklist:taxon:524c058deae407e21758048d3d4149fa,Southern Europe,native r
 ad-hoc-checklist:taxon:524c058deae407e21758048d3d4149fa,cbd_2014_pathway:stowaway_container,pathway,en
 ad-hoc-checklist:taxon:524c058deae407e21758048d3d4149fa,established,degree of establishment,en
 ad-hoc-checklist:taxon:53247b99117567521a949d8026e735b4,cbd_2014_pathway:contaminant_on_plants,pathway,en
-ad-hoc-checklist:taxon:57d6dec70a1a1b277dd49d9da6b669aa,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:57d6dec70a1a1b277dd49d9da6b669aa,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:5af88cdec41200398f311e61bb98a333,Southern Asia,native range,en
 ad-hoc-checklist:taxon:5af88cdec41200398f311e61bb98a333,cbd_2014_pathway:contaminant_animal_parasite,pathway,en
 ad-hoc-checklist:taxon:5af88cdec41200398f311e61bb98a333,established,degree of establishment,en
-ad-hoc-checklist:taxon:5d54247062aa163fc4eb4788d4d23ad9,established,degree of establishment,en
-ad-hoc-checklist:taxon:5e110f7f024e5d2f10cb3fd231765bb1,Asia,native range,en
-ad-hoc-checklist:taxon:5e110f7f024e5d2f10cb3fd231765bb1,cbd_2014_pathway:escape_zoo,pathway,en
-ad-hoc-checklist:taxon:5e110f7f024e5d2f10cb3fd231765bb1,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:5e110f7f024e5d2f10cb3fd231765bb1,established,degree of establishment,en
 ad-hoc-checklist:taxon:6216e4d9dc3ae7a225e69e9d93d7984d,Europe To Northern Africa,native range,en
 ad-hoc-checklist:taxon:6216e4d9dc3ae7a225e69e9d93d7984d,established,degree of establishment,en
 ad-hoc-checklist:taxon:62d1568b524d9f9cb99dfcecf9bf2b15,Cosmopolitan,native range,en
@@ -201,8 +180,6 @@ ad-hoc-checklist:taxon:73ea2c71df8bc15f9173f693e5197a82,introduced,degree of est
 ad-hoc-checklist:taxon:7436a78b866499d58324df221e4ec344,"Macaronesia, Europe, North Africa To Turkey, Caucasus, Turkmenistan, Iran",native range,en
 ad-hoc-checklist:taxon:7436a78b866499d58324df221e4ec344,established,degree of establishment,en
 ad-hoc-checklist:taxon:75989a27ab8b5bb055f8eaa4bddbc6bd,established,degree of establishment,en
-ad-hoc-checklist:taxon:77cc867ef34c63c9cfbd93b7ec4c5798,North America,native range,en
-ad-hoc-checklist:taxon:77cc867ef34c63c9cfbd93b7ec4c5798,established,degree of establishment,en
 ad-hoc-checklist:taxon:77ccd0407b41a5dde7f2a574433a2d4b,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:797b7793e700846ab8f407d68e6ea06a,Near East,native range,en
 ad-hoc-checklist:taxon:797b7793e700846ab8f407d68e6ea06a,introduced,degree of establishment,en
@@ -212,19 +189,12 @@ ad-hoc-checklist:taxon:7aea5e381c2a5a9594c555f1a1c5cd31,"Southern Europe, Africa
 ad-hoc-checklist:taxon:7aea5e381c2a5a9594c555f1a1c5cd31,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:7cc09d9ea9111f118d55552bf28c7342,North America,native range,en
 ad-hoc-checklist:taxon:7cc09d9ea9111f118d55552bf28c7342,cbd_2014_pathway:contaminant_animal_parasite,pathway,en
-ad-hoc-checklist:taxon:7da4576fcbf87e1642f69d1a258f65e0,Southern America (WGSRPD:8),native range,en
 ad-hoc-checklist:taxon:7ec84fdc7a5052ad2f87d9e86518e6dd,Usa To Guatemala,native range,en
 ad-hoc-checklist:taxon:7ec84fdc7a5052ad2f87d9e86518e6dd,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:7f4506f8410b902e2a8717c152437b4a,Southeast Asia,native range,en
 ad-hoc-checklist:taxon:7f4506f8410b902e2a8717c152437b4a,cbd_2014_pathway:contaminant_habitat_material,pathway,en
 ad-hoc-checklist:taxon:7f4506f8410b902e2a8717c152437b4a,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:8237b409cab033b4e94b86cc7b488bdd,Southern America (WGSRPD:8),native range,en
-ad-hoc-checklist:taxon:8237b409cab033b4e94b86cc7b488bdd,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:824311a99094a22ffbfd288d1b664042,North America,native range,en
-ad-hoc-checklist:taxon:843f33e3e64980d12946fe852b4e0e1e,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:843f33e3e64980d12946fe852b4e0e1e,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:86691b2598f39264e9a3bd47e03a6c3b,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:86691b2598f39264e9a3bd47e03a6c3b,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:88478f40930aef17317c6fd3da72d85d,China (WGSRPD:36),native range,en
 ad-hoc-checklist:taxon:88478f40930aef17317c6fd3da72d85d,Japan (WGSRPD:38_JAP),native range,en
 ad-hoc-checklist:taxon:88478f40930aef17317c6fd3da72d85d,cbd_2014_pathway:contaminant_on_plants,pathway,en
@@ -264,10 +234,6 @@ ad-hoc-checklist:taxon:9eac89b53b072c9d7774bf9a9c5aeb7b,North America,native ran
 ad-hoc-checklist:taxon:9eac89b53b072c9d7774bf9a9c5aeb7b,cbd_2014_pathway:natural_dispersal,pathway,en
 ad-hoc-checklist:taxon:9eac89b53b072c9d7774bf9a9c5aeb7b,established,degree of establishment,en
 ad-hoc-checklist:taxon:9f818804cf4820a105305a9e87d16d64,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:9ff05227e4481f8f997eab5ab232e364,North America,native range,en
-ad-hoc-checklist:taxon:9ff05227e4481f8f997eab5ab232e364,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:9ff05227e4481f8f997eab5ab232e364,cbd_2014_pathway:unaided_natural_dispersal,pathway,en
-ad-hoc-checklist:taxon:9ff05227e4481f8f997eab5ab232e364,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:a014122f89fe277d61cc4da345908816,Mediterranean To Central Asia,native range,en
 ad-hoc-checklist:taxon:a014122f89fe277d61cc4da345908816,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:a0be227e2f527ac9e9902c824c4ec6d5,Asia,native range,en
@@ -282,7 +248,6 @@ ad-hoc-checklist:taxon:aa90d71599ed98710da1e2c4a133e5d2,established,degree of es
 ad-hoc-checklist:taxon:aca12e90b486c7ac8d79b0f1fb7eea15,Mediterranean,native range,en
 ad-hoc-checklist:taxon:aca12e90b486c7ac8d79b0f1fb7eea15,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:ae2435f0cb469c0b102b15f171865e23,established,degree of establishment,en
-ad-hoc-checklist:taxon:ae7eec3cf884d2e57367ee05dcba4684,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:af4279693fdd1add7a08a04dc97d7848,established,degree of establishment,en
 ad-hoc-checklist:taxon:af6359f8bf50c30567340c337618be96,"India, Southeast Asia To Australia, New Zealand",native range,en
 ad-hoc-checklist:taxon:af6359f8bf50c30567340c337618be96,cbd_2014_pathway:stowaway_container,pathway,en
@@ -290,17 +255,13 @@ ad-hoc-checklist:taxon:af6359f8bf50c30567340c337618be96,introduced,degree of est
 ad-hoc-checklist:taxon:b11e7d0c22ce4643b57552f968a5b36c,Asia,native range,en
 ad-hoc-checklist:taxon:b11e7d0c22ce4643b57552f968a5b36c,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:b11e7d0c22ce4643b57552f968a5b36c,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:b151e5839b2b692e8d1a0dc3cf0ae6ca,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:b1dc326d2ca46f89ddf3f841a1c4a108,Southern America (WGSRPD:8),native range,en
 ad-hoc-checklist:taxon:b1dc326d2ca46f89ddf3f841a1c4a108,cbd_2014_pathway:contaminant_on_plants,pathway,en
 ad-hoc-checklist:taxon:b1dc326d2ca46f89ddf3f841a1c4a108,established,degree of establishment,en
-ad-hoc-checklist:taxon:b26fdc638376907d27c4ee9fbb486795,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:b26fdc638376907d27c4ee9fbb486795,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:b303ff59fd9219ebb30b25b2be2f5c7f,Cosmopolitan,native range,en
 ad-hoc-checklist:taxon:b303ff59fd9219ebb30b25b2be2f5c7f,established,degree of establishment,en
 ad-hoc-checklist:taxon:b4cf0aba64bc041909012c9a9f30af50,"Macaronesia, North Africa, Europe, Turkey, Caucasus, Near East, Kazakhstan",native range,en
 ad-hoc-checklist:taxon:b4cf0aba64bc041909012c9a9f30af50,established,degree of establishment,en
-ad-hoc-checklist:taxon:b577f19eaa5a4484840ef9e20b483b77,cbd_2014_pathway:release_hunting,pathway,en
 ad-hoc-checklist:taxon:b8eafdd47eb96660ec502f97130150c7,cbd_2014_pathway:contaminant_nursery,pathway,en
 ad-hoc-checklist:taxon:b8eafdd47eb96660ec502f97130150c7,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:b9d94142fc7c7d6afec33a094c166798,Australia,native range,en
@@ -327,7 +288,6 @@ ad-hoc-checklist:taxon:c57c222eb4233fdf9a1e6a215daa3f8f,introduced,degree of est
 ad-hoc-checklist:taxon:c5cfa3fad2fb039f7dd06671f467b053,Tasmania (WGSRPD:50_TAS),native range,en
 ad-hoc-checklist:taxon:c5cfa3fad2fb039f7dd06671f467b053,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:c6b8a8962c953bb9163ce6a9dc97e4b7,established,degree of establishment,en
-ad-hoc-checklist:taxon:c7652f8a4bd180288dd7bb0339fb3532,established,degree of establishment,en
 ad-hoc-checklist:taxon:c9e194d58f903091146e1893275a333c,North America,native range,en
 ad-hoc-checklist:taxon:c9e194d58f903091146e1893275a333c,cbd_2014_pathway:stowaway_container,pathway,en
 ad-hoc-checklist:taxon:c9e194d58f903091146e1893275a333c,introduced,degree of establishment,en
@@ -364,7 +324,6 @@ ad-hoc-checklist:taxon:e4fb7dbe7f0b6ccb043d7258b0fb764f,introduced,degree of est
 ad-hoc-checklist:taxon:e509231e1de49b07403711a33f421387,"Mediterranean To Turkey, Israel",native range,en
 ad-hoc-checklist:taxon:e509231e1de49b07403711a33f421387,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:e53dcce2aa6c770d10b926c592279921,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:e55a4d1859bbd682ddb51b627098defe,established,degree of establishment,en
 ad-hoc-checklist:taxon:e55c33cbf6cfb03b0fe0e4232fdbf68f,Asia,native range,en
 ad-hoc-checklist:taxon:e55c33cbf6cfb03b0fe0e4232fdbf68f,cbd_2014_pathway:escape_pet,pathway,en
 ad-hoc-checklist:taxon:e55c33cbf6cfb03b0fe0e4232fdbf68f,introduced,degree of establishment,en
@@ -383,8 +342,6 @@ ad-hoc-checklist:taxon:e90ab1c2346eb4d804222a191bbd39c9,introduced,degree of est
 ad-hoc-checklist:taxon:e91e6ad3c7d8fc6a7ad46cf5e2920fc0,Eastern Asia (WGSRPD:38),native range,en
 ad-hoc-checklist:taxon:e9e2c06c197255f5b143056274086f56,Caribbean To Brazil,native range,en
 ad-hoc-checklist:taxon:e9e2c06c197255f5b143056274086f56,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:ea75f869bf4fef4a9b278a4cca5b17ca,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:ea75f869bf4fef4a9b278a4cca5b17ca,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:eb7400f37768e5a38463282a1acfa295,Southern Europe,native range,en
 ad-hoc-checklist:taxon:eb7400f37768e5a38463282a1acfa295,cbd_2014_pathway:contaminant_habitat_material,pathway,en
 ad-hoc-checklist:taxon:eb7400f37768e5a38463282a1acfa295,established,degree of establishment,en
@@ -393,19 +350,13 @@ ad-hoc-checklist:taxon:ec229aaed3b70bcd59d7f94760622f76,introduced,degree of est
 ad-hoc-checklist:taxon:ee8cf5de4b7621cecee5bbf07496278a,Africa (WGSRPD:2),native range,en
 ad-hoc-checklist:taxon:ee8cf5de4b7621cecee5bbf07496278a,cbd_2014_pathway:stowaway_container,pathway,en
 ad-hoc-checklist:taxon:ee8cf5de4b7621cecee5bbf07496278a,established,degree of establishment,en
-ad-hoc-checklist:taxon:f18f9214b2bf772321015ba378f1394e,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:f1f1a32768b381663234cafe4d2dac22,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:f1f1a32768b381663234cafe4d2dac22,established,degree of establishment,en
 ad-hoc-checklist:taxon:f3ce196a13f1fce9d15cc2db9d440787,Central And South America,native range,en
 ad-hoc-checklist:taxon:f3ce196a13f1fce9d15cc2db9d440787,cbd_2014_pathway:stowaway_container,pathway,en
 ad-hoc-checklist:taxon:f3ce196a13f1fce9d15cc2db9d440787,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:f7271a35ec4e10840106f492b86e8bb8,North America,native range,en
 ad-hoc-checklist:taxon:f781020a3bca39bc00443963330a85b4,Asia,native range,en
 ad-hoc-checklist:taxon:f781020a3bca39bc00443963330a85b4,cbd_2014_pathway:unaided_natural_dispersal,pathway,en
 ad-hoc-checklist:taxon:f781020a3bca39bc00443963330a85b4,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:f83687040e9fd51e6c9f36e397a917d7,introduced,degree of establishment,en
-ad-hoc-checklist:taxon:f91b4c42b31377b277a8eb1aeef594b5,cbd_2014_pathway:escape_pet,pathway,en
-ad-hoc-checklist:taxon:f91b4c42b31377b277a8eb1aeef594b5,introduced,degree of establishment,en
 ad-hoc-checklist:taxon:f9c3ffbeb12488f4e53fd03493d4a64e,Eastern Asia (WGSRPD:38),native range,en
 ad-hoc-checklist:taxon:fad46cc07ab3741607e5becc86770619,Asia,native range,en
 ad-hoc-checklist:taxon:fad46cc07ab3741607e5becc86770619,cbd_2014_pathway:contaminant,pathway,en
