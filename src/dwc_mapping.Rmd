@@ -100,7 +100,10 @@ taxon <-
       nomenclaturalCode = .data$nomenclatural_code
       ) %>% 
     arrange(taxonID) %>% 
-    select("language", "license", "rightsHolder", "accessRights", "datasetID", "institutionCode", "datasetName", "taxonID", "scientificName", "kingdom", "phylum", "class", "order", "family", "genus", "taxonRank", "nomenclaturalCode")
+    select("language", "license", "rightsHolder", "accessRights", "datasetID",
+           "institutionCode", "datasetName", "taxonID", "scientificName",
+           "kingdom", "phylum", "class", "order", "family", "genus",
+           "taxonRank", "nomenclaturalCode")
 ```
 
 ## Distribution extension
@@ -138,12 +141,13 @@ distribution <-
       occurrenceStatus = .data$occurrence_status,
       establishmentMeans = "introduced",
       degreeOfEstablishment = .data$degree_of_establishment,
-      first_observation_clean = str_remove_all(.data$date_first_observation, ">"),
+      first_observation_clean = 
+        str_remove_all(.data$date_first_observation, ">"),
       eventDate = case_when(
-        is.na(.data$first_observation_clean) & is.na(date_last_observation) ~ NA,
-        is.na(.data$first_observation_clean) ~ paste0("/", date_last_observation),
+        is.na(first_observation_clean) & is.na(date_last_observation) ~ NA,
+        is.na(first_observation_clean) ~ paste0("/", date_last_observation),
         !is.na(date_last_observation) ~ paste0(first_observation_clean, "/"),
-        !is.na(.data$first_observation_clean) & !is.na(date_last_observation) ~ 
+        !is.na(first_observation_clean) & !is.na(date_last_observation) ~ 
            paste(first_observation_clean, date_last_observation, sep = "/")
       ),
       source = .data$source
