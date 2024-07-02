@@ -29,7 +29,6 @@ Load libraries:
 library(tidyverse)      # To do data science
 library(here)           # To find files
 library(janitor)        # To clean input data
-library(digest)         # To generate hashes
 ```
 
 # Read source data
@@ -39,7 +38,7 @@ The data is maintained in [this Google Spreadsheet](https://docs.google.com/spre
 Read the relevant worksheet (published as csv):
 
 ```{r read_source_data}
-input_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTl8IEk2fProQorMu5xKQPdMXl3OQp-c0f6eBXitv0BiVFZ3JSJCde0PtbFXuETgguf6vK8b43FDX1C/pub?gid=0&single=true&output=csv")
+raw_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTl8IEk2fProQorMu5xKQPdMXl3OQp-c0f6eBXitv0BiVFZ3JSJCde0PtbFXuETgguf6vK8b43FDX1C/pub?gid=0&single=true&output=csv", show_col_types = FALSE)
 ```
 Copy the source data to the repository to keep track of changes:
 
@@ -50,33 +49,25 @@ write_csv(input_data, here("data", "raw", "ad_hoc_checklist_dump.csv"), na = "")
 Preview data: 
 
 ```{r}
-input_data %>% head()
+raw_data %>% head()
 ```
+# Preprocessing: tidy data and add taxon ID's
 
-# Preprocessing
-
-## Tidy data
-
-Clean data somewhat:
+To link taxa with information in the extension(s), each taxon needs a unique and relatively stable `taxonID`. We have created one in the form of `dataset_shortname:taxon:hash`, where `hash` is unique code based on scientific name and kingdom. Once this is created, it is added to the source data. 
 
 ```{r}
-input_data %<>%
-  remove_empty("rows") %>%    # Remove empty rows
-  clean_names()               # Have sensible (lowercase) column names
-```
-
-## Taxon IDs
-
-To link taxa with information in the extension(s), each taxon needs a unique and relatively stable `taxonID`. Here we create one in the form of `dataset_shortname:taxon:hash`, where `hash` is unique code based on scientific name and kingdom. This hash was created the first time the dataset is published and was added to the raw data.
-
-
-```{r}
-input_data %<>% mutate(taxon_id = paste(
-  "ad-hoc-checklist",
-  "taxon",
-  taxon_id_hash,
-  sep = ":"
-))
+input_data <-
+  raw_data %>%
+  remove_empty("rows") %>%
+  clean_names() %>%
+  mutate(
+    taxon_id = paste(
+      "ad-hoc-checklist",
+      "taxon",
+      .data$taxon_id_hash,
+      sep = ":"
+    )
+  )
 ```
 
 # Darwin Core mapping
